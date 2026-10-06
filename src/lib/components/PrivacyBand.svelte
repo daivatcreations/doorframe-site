@@ -1,0 +1,56 @@
+<!--
+  Copyright (c) 2026 Daivat Creations
+  All rights reserved.
+
+  This source code is private property. Unauthorized copying of this file, via any medium is strictly prohibited.
+  Proprietary and confidential.
+-->
+<!-- The app's welcome promise (OnboardingView, page 3), and what this website counts. -->
+<script lang="ts">
+	import { reveal } from '$lib/actions/reveal';
+	import Icon from './Icon.svelte';
+
+	const points = [
+		{ icon: 'person-x', title: 'No account', body: 'Nothing to sign up for.' },
+		{
+			icon: 'iphone',
+			title: 'On this iPhone',
+			body: 'Heights and photos are measured and stored on your iPhone. Doorframe has nothing to send them to.'
+		},
+		{
+			icon: 'eye-slash',
+			title: 'No tracking',
+			body: 'No ads or analytics in the app. This website counts visits, without cookies.'
+		},
+		{
+			icon: 'trash',
+			title: 'Yours to erase',
+			body: 'Never shared or sold. Erase everything any time in Settings.'
+		}
+	];
+</script>
+
+<section id="privacy" class="mx-auto max-w-6xl scroll-mt-20 px-5 py-12 sm:py-16">
+	<div class="fade-in rounded-[2.5rem] bg-grouped px-6 py-14 sm:px-14 sm:py-20" use:reveal>
+		<div class="flex flex-col items-center text-center">
+			<span class="grid size-14 place-items-center rounded-2xl bg-canvas text-accent">
+				<Icon name="lock" class="size-7" />
+			</span>
+			<h2 class="mt-6 max-w-[18ch] text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+				Your family stays on your iPhone.
+			</h2>
+		</div>
+		<div class="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+			{#each points as point (point.title)}
+				<div>
+					<span class="text-label-2"><Icon name={point.icon} class="size-6" /></span>
+					<h3 class="mt-3 text-lg font-semibold">{point.title}</h3>
+					<p class="mt-2 leading-relaxed text-label-2">{point.body}</p>
+				</div>
+			{/each}
+		</div>
+		<div class="mt-12 text-center">
+			<a href="/privacy" class="font-medium text-accent hover:underline">Read the privacy policy</a>
+		</div>
+	</div>
+</section>
