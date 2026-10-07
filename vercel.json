@@ -1,4 +1,17 @@
 {
+	"redirects": [
+		{
+			"source": "/:path*",
+			"has": [
+				{
+					"type": "host",
+					"value": "doorframe-site.vercel.app"
+				}
+			],
+			"destination": "https://doorframefamily.com/:path*",
+			"permanent": true
+		}
+	],
 	"headers": [
 		{
 			"source": "/(.*)",

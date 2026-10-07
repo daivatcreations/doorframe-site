@@ -12,7 +12,9 @@
   PrivacyInfo.xcprivacy declares no tracking and only UserDefaults (CA92.1);
   reminders are local notifications (ReminderScheduler); CSV export is a ShareLink
   and Erase All Data deletes every person, measurement and photo (SettingsView);
-  the store is not excluded from device backups. Re-check before changing a claim.
+  the store is not excluded from device backups. Re-checked 2026-10-06 at main 3d164be: the
+  photo library is never read (an add-only permission for saving a share card is coming on
+  chore/pre-submission-audit; add it here when it merges). Re-check before changing a claim.
 -->
 <script lang="ts">
 	import SeoHead from '$lib/components/SeoHead.svelte';
@@ -72,7 +74,8 @@
 			its photo is saved with it, in Doorframe, on your iPhone.
 		</p>
 		<p>
-			Doorframe does not ask for your photo library, location, contacts, microphone or Apple Health.
+			Doorframe never reads your photo library, and it does not ask for your location, contacts,
+			microphone or Apple Health.
 		</p>
 	</section>
 

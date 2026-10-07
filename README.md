@@ -2,7 +2,7 @@
 
 ### The pencil marks on the door frame, without the pencil.
 
-[Website](https://doorframe-site.vercel.app) • [Support](https://doorframe-site.vercel.app/support) • [Privacy](https://doorframe-site.vercel.app/privacy)
+[Website](https://doorframefamily.com) • [Support](https://doorframefamily.com/support) • [Privacy](https://doorframefamily.com/privacy)
 
 ---
 

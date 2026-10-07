@@ -6,7 +6,8 @@
  * Proprietary and confidential.
  */
 // One source for the Support page and its FAQPage structured data, so the two cannot drift.
-// Checked against the app's main (2c7e7e6, 1.0 build 6) on 2026-10-05.
+// Checked against the app's main (2c7e7e6, 1.0 build 6) on 2026-10-05; distance and Capture
+// answers corrected from the app's review (main 3d164be, LiveQuality.standingDistance) on 2026-10-06.
 export type FaqTopic = { topic: string; items: { q: string; a: string }[] };
 
 export const FAQ: FaqTopic[] = [
@@ -19,7 +20,7 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: 'How do I measure someone?',
-				a: 'Tap the Measure button in the tab bar. Stand them on the floor, 1 to 3 metres away, with their head and feet in view, and hold roughly still. The ring around Capture fills and Doorframe captures by itself, then asks who it is. To use the button yourself, turn Auto off.'
+				a: "Tap the Measure button in the tab bar. Stand them on the floor, about 1.2 to 3.5 metres away (closer for a baby lying down), with their head and feet in view, and hold roughly still. The ring around Capture fills and Doorframe captures by itself, then asks who it is. You can also tap Capture once it turns green. Turn Auto off if you'd rather always tap."
 			},
 			{
 				q: 'How accurate is it?',
@@ -77,7 +78,7 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: 'Why does Doorframe need the camera?',
-				a: 'To measure: the camera and LiDAR see how tall someone is. Nothing it sees leaves your iPhone. Doorframe never asks for your photo library, location, contacts or Health.'
+				a: 'To measure: the camera and LiDAR see how tall someone is. Nothing it sees leaves your iPhone. Doorframe never reads your photo library, and never asks for your location, contacts or Health.'
 			},
 			{
 				q: 'Can I export or erase my data?',
