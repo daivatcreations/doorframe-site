@@ -46,7 +46,7 @@
 	title="Doorframe · The family height tracker for iPhone"
 	description="Doorframe measures your family's height live with your iPhone's LiDAR camera, puts everyone on one illustrated door, and follows your kids on WHO and CDC growth charts. Free, with no account. Everything stays on your iPhone."
 	path="/"
-	imageAlt="The Doorframe icon: a door frame with pencil height marks, on red"
+	imageAlt="The Doorframe icon: a door frame on the floor with one red height mark"
 	structuredData={[
 		{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Doorframe', url: SITE_URL },
 		{
@@ -181,7 +181,7 @@
 
 <section class="px-5 py-24 sm:py-32">
 	<div class="fade-in flex flex-col items-center text-center" use:reveal>
-		<span class="text-brand"><Mark size={72} /></span>
+		<span class="text-icon-ink"><Mark size={72} /></span>
 		<h2 class="mt-6 text-4xl font-semibold tracking-tight sm:text-5xl">Start your door frame.</h2>
 		<div class="mt-8"><AppStoreCta /></div>
 	</div>

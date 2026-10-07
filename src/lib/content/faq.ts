@@ -37,6 +37,10 @@ export const FAQ: FaqTopic[] = [
 			{
 				q: 'What does "Is something covering the camera?" mean?',
 				a: "Doorframe can't see a clear picture: check the lens is uncovered and clean. If it says it's too dark, turn on a light."
+			},
+			{
+				q: 'Turned the camera off by mistake?',
+				a: 'Open Measure and tap Open Settings, then turn on Camera. Or go to Settings, then Doorframe, then Camera. When you come back, Doorframe picks up where you left off.'
 			}
 		]
 	},
@@ -78,7 +82,7 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: 'Why does Doorframe need the camera?',
-				a: 'To measure: the camera and LiDAR see how tall someone is. Nothing it sees leaves your iPhone. Doorframe never reads your photo library, and never asks for your location, contacts or Health.'
+				a: 'To measure: the camera and LiDAR see how tall someone is. Nothing it sees leaves your iPhone. Doorframe never reads your photo library: if you choose to save a share card to Photos, iOS asks once, and Doorframe only adds that picture. It never asks for your location, contacts or Health.'
 			},
 			{
 				q: 'Can I export or erase my data?',

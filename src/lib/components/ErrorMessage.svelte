@@ -15,7 +15,7 @@
 </script>
 
 <section class="flex min-h-[70vh] flex-col items-center justify-center px-5 text-center">
-	<span class="text-brand"><Mark size={96} /></span>
+	<span class="text-icon-ink"><Mark size={96} /></span>
 	<h1 class="mt-8 text-3xl font-semibold tracking-tight sm:text-4xl">
 		{missing ? "This page isn't here." : 'Something went wrong.'}
 	</h1>

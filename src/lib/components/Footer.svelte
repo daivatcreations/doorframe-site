@@ -24,7 +24,7 @@
 		<div class="flex flex-col gap-10 sm:flex-row sm:items-start sm:justify-between">
 			<div>
 				<a href="/" class="flex items-center gap-2 text-label">
-					<span class="text-brand"><Mark size={28} /></span>
+					<span class="text-icon-ink"><Mark size={28} /></span>
 					<Wordmark class="h-5" />
 				</a>
 				<p class="mt-3 text-sm text-label-2">

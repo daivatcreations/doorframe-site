@@ -35,7 +35,7 @@
 	<nav aria-label="Main">
 		<div class="mx-auto flex h-14 max-w-6xl items-center justify-between px-5">
 			<a href="/" class="flex items-center gap-2 text-label" onclick={() => (open = false)}>
-				<span class="text-brand"><Mark size={26} /></span>
+				<span class="text-icon-ink"><Mark size={26} /></span>
 				<Wordmark class="h-[18px]" />
 			</a>
 			<ul class="hidden items-center gap-8 text-sm sm:flex">

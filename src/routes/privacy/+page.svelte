@@ -12,9 +12,9 @@
   PrivacyInfo.xcprivacy declares no tracking and only UserDefaults (CA92.1);
   reminders are local notifications (ReminderScheduler); CSV export is a ShareLink
   and Erase All Data deletes every person, measurement and photo (SettingsView);
-  the store is not excluded from device backups. Re-checked 2026-10-06 at main 3d164be: the
-  photo library is never read (an add-only permission for saving a share card is coming on
-  chore/pre-submission-audit; add it here when it merges). Re-check before changing a claim.
+  the store is not excluded from device backups. Re-checked 2026-10-06 at main 97fa2a2 (build 8):
+  the photo library is never read; the only other usage description is the add-only
+  NSPhotoLibraryAddUsageDescription, for saving a share card (PR #7). Re-check before changing a claim.
 -->
 <script lang="ts">
 	import SeoHead from '$lib/components/SeoHead.svelte';
@@ -32,7 +32,7 @@
 <LegalPage
 	title="Privacy Policy"
 	intro="Doorframe is a family height tracker for iPhone. It has no account, no server, no ads and no analytics. Your family's heights and photos stay on your iPhone."
-	effective="October 5, 2026"
+	effective="October 6, 2026"
 >
 	<section>
 		<h2>1. What Doorframe keeps, and where</h2>
@@ -74,7 +74,8 @@
 			its photo is saved with it, in Doorframe, on your iPhone.
 		</p>
 		<p>
-			Doorframe never reads your photo library, and it does not ask for your location, contacts,
+			Doorframe never reads your photo library. If you choose to save a share card to Photos, iOS
+			asks once, and Doorframe only adds that picture. It does not ask for your location, contacts,
 			microphone or Apple Health.
 		</p>
 	</section>

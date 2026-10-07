@@ -13,6 +13,7 @@
 	--color-separator: var(--separator);
 	--color-accent: var(--accent);
 	--color-brand: var(--brand);
+	--color-icon-ink: var(--icon-ink);
 	--color-go: var(--go);
 	--color-elevated: var(--elevated);
 }
@@ -29,8 +30,10 @@
 	--separator: rgb(60 60 67 / 0.18);
 	/* Text and links: the app's Apple News red, darkened to 5.2:1 on white (4.65 on grouped). */
 	--accent: #d41f33;
-	/* Marks, buttons and the icon: the app's red as it is (DFColor.accent). */
+	/* Marks, buttons and the icon's newest mark: the app's red as it is (DFColor.accent). */
 	--brand: #f23b4c;
+	/* The app icon's door and floor (AppIcon.icon). */
+	--icon-ink: #2c2c30;
 	/* Green means go in the app (Capture, high confidence), never brand. */
 	--go: #248a3d;
 	/* The Doorframe illustration (the app's DoorPalette). */
@@ -58,6 +61,7 @@
 		/* 6.7:1 on black, 5.4 on grouped. Not for text on elevated. */
 		--accent: #ff5466;
 		--brand: #ff5466;
+		--icon-ink: #e7e7ec;
 		--go: #30d158;
 		--wall-top: rgb(54 48 46);
 		--wall-bottom: rgb(41 38 36);

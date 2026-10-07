@@ -6,9 +6,9 @@
   Proprietary and confidential.
 -->
 <!--
-  The mark, redrawn from the app icon (docs/design/app-icon.svg) without its red
-  square: the door frame, three pencil marks and the newest one with its dot.
-  Colour comes from the parent's text colour.
+  The mark: the app icon (Doorframe/AppIcon.icon, from docs/design/icon/final/door.svg
+  and mark.svg) without its background. The door frame and floor take the parent's text
+  colour (text-icon-ink matches the icon); the newest mark is the brand red.
 -->
 <script lang="ts">
 	let { size = 120, label }: { size?: number; label?: string } = $props();
@@ -17,33 +17,18 @@
 <svg
 	width={size}
 	height={size}
-	viewBox="240 140 600 884"
+	viewBox="200 170 630 670"
 	role={label ? 'img' : undefined}
 	aria-label={label}
 	aria-hidden={label ? undefined : 'true'}
-	style:width="{(size * 600) / 884}px"
+	style:width="{(size * 630) / 670}px"
 >
 	<path
-		d="M300 1024 V190 a28 28 0 0 1 28 -28 H696 a28 28 0 0 1 28 28 V1024"
-		fill="none"
-		stroke="currentColor"
-		stroke-width="56"
-		stroke-linejoin="round"
+		fill="currentColor"
+		d="M260,788 V236 A52,52 0 0 1 312,184 H588 A52,52 0 0 1 640,236 V788 H596 V242 A14,14 0 0 0 582,228 H318 A14,14 0 0 0 304,242 V788 Z M200,788 H830 V828 H200 Z"
 	/>
-	<path d="M356 1024 V218 H668 V1024 Z" fill="currentColor" opacity="0.14" />
-	<g stroke="currentColor" stroke-width="20" stroke-linecap="round" opacity="0.55">
-		<line x1="636" y1="780" x2="760" y2="780" />
-		<line x1="636" y1="640" x2="760" y2="640" />
-		<line x1="636" y1="500" x2="760" y2="500" />
-	</g>
-	<line
-		x1="600"
-		y1="370"
-		x2="780"
-		y2="370"
-		stroke="currentColor"
-		stroke-width="26"
-		stroke-linecap="round"
+	<path
+		fill="var(--brand)"
+		d="M450,382 H710 A18,18 0 0 1 728,400 A18,18 0 0 1 710,418 H450 A18,18 0 0 1 432,400 A18,18 0 0 1 450,382 Z M686,400 A42,42 0 1 1 770,400 A42,42 0 1 1 686,400 Z"
 	/>
-	<circle cx="780" cy="370" r="34" fill="currentColor" />
 </svg>
