@@ -56,8 +56,8 @@ export const FAQ: FaqTopic[] = [
 				a: 'For babies, children and teens: the WHO standards up to age two and the CDC charts from 2 to 20, with the shaded 3rd to 97th and 25th to 75th percentile bands, their current percentile and how fast they are growing. Grown-ups get a steady height card instead.'
 			},
 			{
-				q: 'How does Looking Ahead predict a grown-up height?',
-				a: "From their own growth curve once they're two, from both parents' heights, or from both. You choose who a child's parents are in their profile; Doorframe never guesses. Every prediction shows its range."
+				q: 'How does Looking Ahead estimate a grown-up height?',
+				a: "From their own growth curve once they're two, from both parents' heights, or from both. You choose who a child's parents are in their profile; Doorframe never guesses. It shows a range, not one number. It's an estimate, not a promise."
 			},
 			{
 				q: 'Is this medical advice?',

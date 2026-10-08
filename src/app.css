@@ -36,16 +36,9 @@
 	--icon-ink: #2c2c30;
 	/* Green means go in the app (Capture, high confidence), never brand. */
 	--go: #248a3d;
-	/* The Doorframe illustration (the app's DoorPalette). */
-	--wall-top: rgb(250 242 230);
-	--wall-bottom: rgb(240 227 209);
-	--trim: rgb(255 252 247);
-	--leaf: rgb(51 92 117);
-	--leaf-light: rgb(74 120 145);
-	--brass: rgb(191 145 69);
-	--floor-far: rgb(158 115 79);
-	--floor-near: rgb(115 79 54);
-	--pencil: rgb(77 71 69);
+	/* The Doorframe drawing (the app's DFColor.doorWall and doorCardEdge); its lines are --icon-ink. */
+	--door-wall: #ffffff;
+	--door-edge: #d9d9db;
 	color-scheme: light dark;
 }
 
@@ -63,15 +56,8 @@
 		--brand: #ff5466;
 		--icon-ink: #e7e7ec;
 		--go: #30d158;
-		--wall-top: rgb(54 48 46);
-		--wall-bottom: rgb(41 38 36);
-		--trim: rgb(204 199 189);
-		--leaf: rgb(38 69 89);
-		--leaf-light: rgb(54 89 112);
-		--brass: rgb(173 133 64);
-		--floor-far: rgb(92 66 48);
-		--floor-near: rgb(61 43 31);
-		--pencil: rgb(209 204 196);
+		--door-wall: #1c1c1e;
+		--door-edge: transparent;
 	}
 }
 

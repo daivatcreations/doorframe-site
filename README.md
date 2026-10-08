@@ -8,7 +8,7 @@
 
 ## Overview
 
-Doorframe (on the App Store as "Doorframe: Height Tracker") is a family height tracker for iPhone: measure live with LiDAR, see the whole family on one illustrated door, and follow kids' growth on WHO and CDC charts. No account, no server, no ads, no analytics.
+Doorframe (on the App Store as "Doorframe: Height Tracker") is a family height tracker for iPhone: measure live with LiDAR, see the whole family on one door, and follow kids' growth on WHO and CDC charts. No account, no server, no ads, no analytics.
 
 This repository hosts the **marketing and support site** for Doorframe. The app itself lives in a private repository.
 

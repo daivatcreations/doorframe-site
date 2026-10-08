@@ -44,7 +44,7 @@
 
 <SeoHead
 	title="Doorframe · The family height tracker for iPhone"
-	description="Doorframe measures your family's height live with your iPhone's LiDAR camera, puts everyone on one illustrated door, and follows your kids on WHO and CDC growth charts. Free, with no account. Everything stays on your iPhone."
+	description="Doorframe measures your family's height live with your iPhone's LiDAR camera, puts everyone on one door, and follows your kids on WHO and CDC growth charts. Free, with no account. Everything stays on your iPhone."
 	path="/"
 	imageAlt="The Doorframe icon: a door frame on the floor with one red height mark"
 	structuredData={[
@@ -58,7 +58,7 @@
 			applicationCategory: 'LifestyleApplication',
 			offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 			description:
-				"Measure your family's height live with LiDAR, see everyone on one illustrated door, and follow your kids on WHO and CDC growth charts.",
+				"Measure your family's height live with LiDAR, see everyone on one door, and follow your kids on WHO and CDC growth charts.",
 			author: { '@type': 'Organization', name: COMPANY, url: SITE_URL }
 		}
 	]}
@@ -117,8 +117,8 @@
 
 	<Feature eyebrow="The Doorframe" title="The whole family, on one door." flip>
 		<p>
-			Everyone's latest mark, in pencil, on a door drawn to true scale. Tap it for the full door,
-			and turn on history for the kids' older marks in faded pencil.
+			Everyone's latest mark, in their own colour, on a door drawn to true scale. Tap it for the
+			full door, and turn on history for the kids' older marks.
 		</p>
 		<p>Then a card for each person, and every measurement in a library you can browse.</p>
 		{#snippet media()}
@@ -126,14 +126,14 @@
 				<PhoneFrame width="min(240px, 42vw)">
 					<Screenshot
 						name="library"
-						alt="The Library: Your Family, with the Doorframe card showing Sam, Maya and Arlo's marks on a door, then Arlo's card, then Recent measurements"
+						alt="The Library: Your Family, with the Doorframe card showing Sam, Maya and Arlo's marks on a line-drawn door, then Arlo's card, then Recent measurements"
 					/>
 				</PhoneFrame>
 				<div class="mt-16">
 					<PhoneFrame width="min(240px, 42vw)">
 						<Screenshot
 							name="wall"
-							alt="The full Doorframe: a teal door with Sam at 180.0 cm, Maya at 164.0 cm and Arlo at 88.5 cm marked on the casing"
+							alt="The full Doorframe: a line-drawn door frame with a ruler; Sam 180.0 cm, Maya 164.0 cm and Arlo 88.5 cm as coloured marks, Arlo's older heights as faint ticks"
 						/>
 					</PhoneFrame>
 				</div>
@@ -147,8 +147,9 @@
 			with their percentile and how fast they're growing.
 		</p>
 		<p>
-			Looking Ahead predicts their grown-up height from their own growth curve, their parents'
-			heights, or both. You choose who the parents are; Doorframe never guesses.
+			Looking Ahead estimates their grown-up height from their own growth curve, their parents'
+			heights, or both: an estimate, not a promise. You choose who the parents are; Doorframe never
+			guesses.
 		</p>
 		<p>Grown-ups get a steady height card instead of a chart.</p>
 		<p class="text-base text-label-3">Percentiles are information, not medical advice.</p>
@@ -156,7 +157,7 @@
 			<PhoneFrame>
 				<Screenshot
 					name="chart"
-					alt="Arlo's page: Looking Ahead predicts 170.9 cm to 185.4 cm and says Arlo passes Maya at about 14; below, his measurements rise along the shaded percentile bands of a growth chart"
+					alt="Arlo's page: Looking Ahead shows an estimated grown-up height of 170.9 cm to 185.4 cm, an estimate, not a promise, and says Arlo passes Maya at about 14; below, his measurements rise along the shaded percentile bands of a growth chart"
 				/>
 			</PhoneFrame>
 		{/snippet}

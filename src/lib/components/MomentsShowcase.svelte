@@ -23,8 +23,8 @@
 			to: '#5236b4'
 		},
 		{
-			title: 'Arlo may grow to 178.2 cm',
-			detail: "Likely 170.9 cm – 185.4 cm. From their growth curve and both parents' heights.",
+			title: 'Arlo may grow to 170.9 cm – 185.4 cm',
+			detail: "An estimate from CDC data and parents' heights, not a promise.",
 			from: '#1e86a8',
 			to: '#125f7a'
 		},

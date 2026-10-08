@@ -6,156 +6,198 @@
   Proprietary and confidential.
 -->
 <!--
-  The Doorframe, redrawn from the app's DoorScene (DoorframeWall.swift) at true
-  scale: a 2.03 m door, 0.82 m wide, on a wood floor, with the sample family's
-  marks on the left casing. Arlo's older marks draw in first, in faded pencil,
-  then everyone's latest. The marks are visible by default: the drawing is a CSS
-  animation, so reduced motion (app.css) and no JS both show the finished door.
+  The Doorframe card from the app's Library (DoorScene in DoorframeWall.swift,
+  build 9), drawn like the app icon at true scale: a 2.03 m by 0.82 m frame on a
+  floor line, and each person's latest height as the icon's mark in their colour.
+  The geometry is the app's DoorLayout on a 3:4 card with the floor at 70%.
+
+  Motion, as in the app: the frame draws up and over while the floor grows out
+  (0.9 s), then the marks slide out shortest to tallest (0.14 s apart). It plays
+  once, on load or when scrolled into view (reveal). Reduced motion (app.css) and
+  no JS show the finished drawing.
 -->
 <script lang="ts">
-	// px per metre: the door's 2.03 m is 300 px tall.
-	const S = 300 / 2.03;
-	const FLOOR = 430;
+	import { reveal } from '$lib/actions/reveal';
+
+	// The card, in the app's points: 3:4, the floor line at 70%.
+	const W = 276;
+	const H = 368;
+	const FLOOR = 0.7 * H;
+	const LABEL_ROOM = 96;
+
+	// The app's sample family (SampleData.swift), shortest first; colours are the palette's `solid`.
+	const family = [
+		{ name: 'Arlo', m: 0.885, label: '88.5 cm', colour: '#6fcf97' },
+		{ name: 'Maya', m: 1.64, label: '164.0 cm', colour: '#5ac8fa' },
+		{ name: 'Sam', m: 1.8, label: '180.0 cm', colour: '#5e5ce6' }
+	];
+
+	// DoorLayout: px per metre is whichever of height and width runs out first.
+	const top = Math.max(2.25, Math.max(...family.map((p) => p.m)) * 1.06);
+	const S = Math.min((FLOOR - 0.06 * H) / top, (W * (1 - 0.14) - LABEL_ROOM) / (0.82 + 0.3 + 0.2));
+	const c = Math.max(3, 0.075 * S);
 	const y = (m: number) => FLOOR - m * S;
 
-	const DOOR = { x: 186, w: 0.82 * S, top: y(2.03) };
-	const CASING = 14;
+	const left = 0.14 * W + c / 2;
+	const right = left + c + 0.82 * S;
+	const head = FLOOR - 2.03 * S - c / 2;
+	const r = 1.2 * c;
+	const frame = `M${left} ${FLOOR} V${head + r} A${r} ${r} 0 0 1 ${left + r} ${head} H${right - r} A${r} ${r} 0 0 1 ${right} ${head + r} V${FLOOR}`;
 
-	// The app's sample family (SampleData.swift): Arlo measured monthly since birth.
-	const history = [0.5, 0.61, 0.69, 0.75, 0.8, 0.84];
-	const latest = [
-		{ name: 'Sam', m: 1.8, label: '180.0 cm', colour: '#5e5ce6' },
-		{ name: 'Maya', m: 1.64, label: '164.0 cm', colour: '#32ade6' },
-		{ name: 'Arlo', m: 0.885, label: '88.5 cm', colour: '#34c759' }
-	];
-	const casingLeft = DOOR.x - CASING;
+	const markStart = left + (right - left) * 0.38;
+	const markEnd = right + c / 2 + 0.3 * S;
+	const dot = 0.95 * c;
+	const labelX = markEnd + dot + 8;
+
+	// Labels sit on their marks, nudged up so none is within 16 px of the one below.
+	let below = Infinity;
+	const marks = family.map((p, i) => {
+		const labelY = Math.min(y(p.m), below - 16);
+		below = labelY;
+		return { ...p, labelY, delay: 0.9 + i * 0.14 };
+	});
+
+	const summary =
+		'Doorframe: ' +
+		[...family]
+			.reverse()
+			.map((p) => `${p.name} ${p.label}`)
+			.join(', ');
 </script>
 
-<svg
-	viewBox="0 0 440 480"
-	class="block h-auto w-full"
-	role="img"
-	aria-label="An illustrated door frame with the family's height marks in pencil: Sam 180.0 cm, Maya 164.0 cm and Arlo 88.5 cm, with Arlo's older marks below"
->
-	<defs>
-		<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
-			<stop offset="0" stop-color="var(--wall-top)" />
-			<stop offset="1" stop-color="var(--wall-bottom)" />
-		</linearGradient>
-		<linearGradient id="floor" x1="0" y1="0" x2="0" y2="1">
-			<stop offset="0" stop-color="var(--floor-far)" />
-			<stop offset="1" stop-color="var(--floor-near)" />
-		</linearGradient>
-		<linearGradient id="leaf" x1="0" y1="0" x2="1" y2="0">
-			<stop offset="0" stop-color="var(--leaf-light)" />
-			<stop offset="1" stop-color="var(--leaf)" />
-		</linearGradient>
-	</defs>
+<div use:reveal class="door">
+	<svg viewBox="0 0 {W} {H}" class="block h-auto w-full" role="img" aria-label={summary}>
+		<defs>
+			<clipPath id="door-card">
+				<rect width={W} height={H} rx="22" />
+			</clipPath>
+		</defs>
 
-	<rect width="440" height={FLOOR} fill="url(#wall)" />
-	<rect y={FLOOR} width="440" height={480 - FLOOR} fill="url(#floor)" />
-	{#each [446, 462] as py (py)}
-		<line x1="0" x2="440" y1={py} y2={py} stroke="black" stroke-opacity="0.12" />
-	{/each}
+		<g clip-path="url(#door-card)">
+			<rect width={W} height={H} fill="var(--grouped)" />
+			<rect width={W} height={FLOOR + 0.45 * c} fill="var(--door-wall)" />
 
-	<!-- casing, with its shadow on the wall -->
-	<path
-		d="M{casingLeft} {FLOOR} V{DOOR.top - CASING} H{DOOR.x + DOOR.w + CASING} V{FLOOR}"
-		fill="none"
-		stroke="black"
-		stroke-opacity="0.1"
-		stroke-width={CASING}
-		transform="translate(3 3)"
-	/>
-	<rect
-		x={casingLeft - CASING / 2}
-		y={DOOR.top - CASING * 1.5}
-		width={DOOR.w + CASING * 3}
-		height={FLOOR - DOOR.top + CASING * 1.5}
-		fill="var(--trim)"
-	/>
-	<!-- the door: two panels and a brass knob -->
-	<rect x={DOOR.x} y={DOOR.top} width={DOOR.w} height={FLOOR - DOOR.top} fill="url(#leaf)" />
-	<g fill="white" fill-opacity="0.05" stroke="white" stroke-opacity="0.22">
-		<rect x={DOOR.x + 16} y={DOOR.top + 18} width={DOOR.w - 32} height="118" rx="2" />
-		<rect x={DOOR.x + 16} y={DOOR.top + 152} width={DOOR.w - 32} height="118" rx="2" />
-	</g>
-	<circle cx={DOOR.x + DOOR.w - 13} cy={y(1)} r="5.5" fill="var(--brass)" />
-
-	<!-- Arlo's older marks, in faded pencil -->
-	{#each history as m, i (m)}
-		<line
-			class="draw"
-			style:animation-delay="{0.3 + i * 0.15}s"
-			pathLength="1"
-			x1={casingLeft - 6}
-			x2={casingLeft + 8}
-			y1={y(m)}
-			y2={y(m)}
-			stroke="var(--pencil)"
-			stroke-opacity="0.35"
-			stroke-width="1.6"
-			stroke-linecap="round"
-		/>
-	{/each}
-
-	<!-- everyone's latest mark, with their name -->
-	{#each latest as p, i (p.name)}
-		{@const delay = 1.3 + i * 0.35}
-		<g>
-			<line
-				class="draw"
-				style:animation-delay="{delay}s"
-				pathLength="1"
-				x1={casingLeft - 18}
-				x2={casingLeft + 8}
-				y1={y(p.m)}
-				y2={y(p.m)}
-				stroke="var(--pencil)"
-				stroke-width="2.2"
-				stroke-linecap="round"
+			<rect
+				class="floor"
+				x={-c}
+				y={FLOOR}
+				width={W + 2 * c}
+				height={0.9 * c}
+				rx={0.45 * c}
+				fill="var(--icon-ink)"
 			/>
-			<g class="label" style:animation-delay="{delay + 0.3}s">
-				<circle cx={casingLeft - 134} cy={y(p.m)} r="5" fill={p.colour} />
+			<path
+				class="frame"
+				d={frame}
+				pathLength="1"
+				fill="none"
+				stroke="var(--icon-ink)"
+				stroke-width={c}
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			/>
+
+			{#each marks as p (p.name)}
+				<g fill={p.colour}>
+					<rect
+						class="bar"
+						style:animation-delay="{p.delay}s"
+						x={markStart}
+						y={y(p.m) - 0.41 * c}
+						width={markEnd - markStart}
+						height={0.82 * c}
+						rx={0.41 * c}
+					/>
+					<circle class="dot" style:animation-delay="{p.delay}s" cx={markEnd} cy={y(p.m)} r={dot} />
+				</g>
 				<text
-					x={casingLeft - 123}
-					y={y(p.m)}
+					class="label"
+					style:animation-delay="{p.delay}s"
+					x={labelX}
+					y={p.labelY}
 					dominant-baseline="central"
-					font-size="15"
-					class="font-rounded"
-					fill="var(--pencil)"
+					font-size="11"
+					font-weight="600"
 				>
-					<tspan font-weight="700">{p.name}</tspan>
-					<tspan dx="4">{p.label}</tspan>
+					<tspan fill={p.colour}>{p.name}</tspan><tspan dx="3" fill="var(--label-2)"
+						>{p.label}</tspan
+					>
+				</text>
+			{/each}
+
+			<g transform="translate(16 {H - 16})">
+				<text y="-49" font-size="13" font-weight="600" fill="var(--label-2)">THE DOORFRAME</text>
+				<text y="-25" font-size="22" font-weight="700" class="font-rounded" fill="var(--label)">
+					Sam is the tallest
+				</text>
+				<text y="-4" font-size="15" font-weight="500" fill="var(--label-2)">
+					Everyone, side by side
 				</text>
 			</g>
 		</g>
-	{/each}
-</svg>
+		<rect
+			x="0.5"
+			y="0.5"
+			width={W - 1}
+			height={H - 1}
+			rx="21.5"
+			fill="none"
+			stroke="var(--door-edge)"
+		/>
+	</svg>
+</div>
 
 <style>
-	.draw {
-		animation: draw 0.7s ease-out both;
+	.frame {
+		stroke-dasharray: 1;
+		animation: draw 0.9s ease-in-out both;
+	}
+	.floor,
+	.bar,
+	.dot {
+		transform-box: fill-box;
+	}
+	.floor {
+		transform-origin: center;
+		animation: grow 0.9s ease-in-out both;
+	}
+	.bar {
+		transform-origin: left;
+		animation: grow 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) both;
+	}
+	.dot {
+		transform-origin: center;
+		animation: pop 0.55s cubic-bezier(0.34, 1.4, 0.64, 1) both;
 	}
 	.label {
-		animation: appear 0.6s ease-out both;
+		animation: appear 0.55s ease-out both;
+	}
+	/* Scrolled in from below the fold (reveal): wait, then play from the start. */
+	.door:global(.armed:not(.visible)) :is(.frame, .floor, .bar, .dot, .label) {
+		animation: none;
+		visibility: hidden;
 	}
 	@keyframes draw {
 		from {
-			stroke-dasharray: 1;
 			stroke-dashoffset: 1;
 		}
 		to {
-			stroke-dasharray: 1;
 			stroke-dashoffset: 0;
+		}
+	}
+	@keyframes grow {
+		from {
+			transform: scaleX(0);
+		}
+	}
+	@keyframes pop {
+		from {
+			transform: scale(0);
 		}
 	}
 	@keyframes appear {
 		from {
 			opacity: 0;
-		}
-		to {
-			opacity: 1;
 		}
 	}
 </style>

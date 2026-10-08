@@ -22,7 +22,7 @@
 <LegalPage
 	title="Terms of Use"
 	intro="These terms cover your use of Doorframe. They're written to be read, and they sit alongside Apple's own terms for apps from the App Store."
-	effective="October 5, 2026"
+	effective="October 7, 2026"
 >
 	<section>
 		<h2>1. About Doorframe</h2>
@@ -75,7 +75,7 @@
 		<h2>6. Not Medical Advice</h2>
 		<p>
 			<strong
-				>Growth charts, percentiles, growth pace and predicted heights in Doorframe are information.
+				>Growth charts, percentiles, growth pace and estimated heights in Doorframe are information.
 				They are not medical advice, and not a substitute for a doctor.</strong
 			>
 			The charts use the WHO and CDC growth references. If you have questions about how a child is growing,
@@ -101,7 +101,7 @@
 		</p>
 		<p>
 			We do not warrant that the app will be uninterrupted, error-free, or free of harmful
-			components, or that its measurements, charts or predictions will be accurate or complete.
+			components, or that its measurements, charts or estimates will be accurate or complete.
 		</p>
 	</section>
 
