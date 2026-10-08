@@ -27,7 +27,7 @@
 		</div>
 	</div>
 	<div
-		class="mx-auto mt-14 max-w-xl overflow-hidden rounded-[2.5rem] shadow-[0_30px_60px_-30px_rgb(0_0_0/0.35)] sm:mt-20"
+		class="mx-auto mt-14 max-w-sm rounded-[8%/6%] shadow-[0_30px_60px_-30px_rgb(0_0_0/0.35)] sm:mt-20"
 	>
 		<DoorScene />
 	</div>
