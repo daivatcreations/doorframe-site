@@ -1,0 +1,128 @@
+<!doctype html>
+<!--
+  Copyright (c) 2026 Daivat Creations
+  All rights reserved.
+
+  This source code is private property. Unauthorized copying of this file, via any medium is strictly prohibited.
+  Proprietary and confidential.
+-->
+<!--
+  The 1200 × 630 share image (static/images/og-image.png): the Library's line-drawn
+  Doorframe card (DoorScene.svelte's geometry, dark) and two dark app screens.
+  Render it from the repo root with a 1200 × 630 viewport, e.g. Playwright:
+  page.goto('file://…/scripts/og-image.html'); page.screenshot({ path: 'static/images/og-image.png' }).
+-->
+<html lang="en">
+	<meta charset="utf-8" />
+	<style>
+		html,
+		body {
+			margin: 0;
+			width: 1200px;
+			height: 630px;
+			overflow: hidden;
+			background: radial-gradient(120% 120% at 0% 0%, #1c1c1e, #000 70%);
+			color: #fff;
+			font-family: -apple-system, 'SF Pro Display', system-ui, sans-serif;
+		}
+		.text {
+			position: absolute;
+			left: 72px;
+			top: 92px;
+			width: 470px;
+		}
+		.name {
+			font-family: ui-rounded, 'SF Pro Rounded', system-ui;
+			font-weight: 700;
+			font-size: 40px;
+			letter-spacing: -0.5px;
+		}
+		h1 {
+			margin: 36px 0 0;
+			font-size: 54px;
+			line-height: 1.06;
+			letter-spacing: -1.2px;
+			font-weight: 600;
+		}
+		p {
+			margin: 26px 0 0;
+			font-size: 25px;
+			line-height: 1.35;
+			color: rgb(235 235 245 / 0.7);
+		}
+		.card {
+			position: absolute;
+			left: 560px;
+			top: 118px;
+			width: 300px;
+			border-radius: 24px;
+			box-shadow: 0 30px 60px -20px rgb(0 0 0 / 0.8);
+		}
+		.phone {
+			position: absolute;
+			left: 900px;
+			top: 54px;
+			width: 250px;
+			padding: 8px;
+			border-radius: 44px;
+			background: #1a1a1c;
+			box-shadow:
+				inset 0 0 0 1.5px #4a4a4e,
+				0 30px 60px -20px rgb(0 0 0 / 0.8);
+		}
+		.phone img {
+			display: block;
+			width: 100%;
+			border-radius: 36px;
+		}
+	</style>
+	<body>
+		<div class="text">
+			<div class="name">Doorframe</div>
+			<h1>The pencil marks on the door frame, without the pencil.</h1>
+			<p>Measure your kids' height with your iPhone and watch them grow.</p>
+		</div>
+		<svg class="card" id="door" viewBox="0 0 276 368"></svg>
+		<div class="phone"><img src="../static/images/screens/entry-cards-dark.webp" alt="" /></div>
+		<script>
+			// DoorScene.svelte's layout, finished and in dark colours.
+			const W = 276,
+				H = 368,
+				FLOOR = 0.7 * H,
+				ink = '#e7e7ec';
+			const family = [
+				['Arlo', 0.885, '88.5 cm', '#6fcf97'],
+				['Maya', 1.64, '164.0 cm', '#5ac8fa'],
+				['Sam', 1.8, '180.0 cm', '#5e5ce6']
+			];
+			const topMetres = Math.max(2.25, 1.8 * 1.06);
+			const S = Math.min((FLOOR - 0.06 * H) / topMetres, (W * 0.86 - 96) / 1.32);
+			const c = Math.max(3, 0.075 * S);
+			const y = (m) => FLOOR - m * S;
+			const left = 0.14 * W + c / 2,
+				right = left + c + 0.82 * S,
+				head = FLOOR - 2.03 * S - c / 2,
+				r = 1.2 * c;
+			const markStart = left + (right - left) * 0.38,
+				markEnd = right + c / 2 + 0.3 * S,
+				dot = 0.95 * c;
+			let svg = `<clipPath id="k"><rect width="${W}" height="${H}" rx="22"/></clipPath><g clip-path="url(#k)">
+				<rect width="${W}" height="${H}" fill="#1c1c1e"/>
+				<rect x="${-c}" y="${FLOOR}" width="${W + 2 * c}" height="${0.9 * c}" rx="${0.45 * c}" fill="${ink}"/>
+				<path d="M${left} ${FLOOR} V${head + r} A${r} ${r} 0 0 1 ${left + r} ${head} H${right - r} A${r} ${r} 0 0 1 ${right} ${head + r} V${FLOOR}" fill="none" stroke="${ink}" stroke-width="${c}" stroke-linecap="round" stroke-linejoin="round"/>`;
+			let below = Infinity;
+			for (const [name, m, label, colour] of family) {
+				const ly = Math.min(y(m), below - 16);
+				below = ly;
+				svg += `<rect x="${markStart}" y="${y(m) - 0.41 * c}" width="${markEnd - markStart}" height="${0.82 * c}" rx="${0.41 * c}" fill="${colour}"/>
+					<circle cx="${markEnd}" cy="${y(m)}" r="${dot}" fill="${colour}"/>
+					<text x="${markEnd + dot + 8}" y="${ly}" dominant-baseline="central" font-size="11" font-weight="600"><tspan fill="${colour}">${name}</tspan><tspan dx="3" fill="rgb(235 235 245 / 0.7)">${label}</tspan></text>`;
+			}
+			svg += `<g transform="translate(16 ${H - 16})">
+				<text y="-49" font-size="13" font-weight="600" fill="rgb(235 235 245 / 0.7)">THE DOORFRAME</text>
+				<text y="-25" font-size="22" font-weight="700" font-family="ui-rounded, 'SF Pro Rounded'" fill="#fff">Sam is the tallest</text>
+				<text y="-4" font-size="15" font-weight="500" fill="rgb(235 235 245 / 0.7)">Everyone, side by side</text></g></g>`;
+			document.getElementById('door').innerHTML = svg;
+		</script>
+	</body>
+</html>

@@ -25,10 +25,10 @@
 </script>
 
 <SeoHead
-	title="Support · Doorframe"
-	description="Help with Doorframe: measuring, growth charts, and your data."
+	title="Doorframe Help: Measuring Height, LiDAR iPhones, Growth FAQ"
+	description="How to measure your child's height with your iPhone, which iPhones have LiDAR, what a height percentile means, and how Doorframe keeps your data on your iPhone."
 	path="/support"
-	imageAlt="Doorframe support"
+	breadcrumb="Support"
 	structuredData={faqSchema}
 />
 

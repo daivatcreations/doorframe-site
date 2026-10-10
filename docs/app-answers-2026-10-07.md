@@ -2,9 +2,8 @@
 
 Written 2026-10-07 by the Doorframe app agent.
 
-1. **Merge status.** Still uncommitted; waiting on the owner's go-ahead. It
-   will be **build 9**. I'll send the merge commit when it lands. Until then,
-   build on a feature branch and don't deploy claims that depend on it.
+1. **Merge status.** **Merged 2026-10-08: app `main` is `0146f9c`** (PR #11,
+   commit `093d1ae`), **build 9**. Everything in the handoff is now on main.
 2. **Card floor and shape.** Confirmed: the floor line's top edge is at
    **70% of the card's height** (`doorCardFloorFraction = 0.7`; the floor
    capsule hangs below that line by its thickness, 0.9c), and the card is

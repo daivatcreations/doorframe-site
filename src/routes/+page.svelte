@@ -17,15 +17,29 @@
 	import Mark from '$lib/components/Mark.svelte';
 	import Icon from '$lib/components/Icon.svelte';
 	import { reveal } from '$lib/actions/reveal';
-	import { COMPANY, SITE_URL, STORE_NAME } from '$lib/constants/app';
+	import { APP_STORE_URL, COMPANY, SITE_NAME, SITE_URL, STORE_NAME } from '$lib/constants/app';
 
-	// Measure's coaching, in the app's words (LiveQuality.swift).
+	const organization = {
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		name: COMPANY,
+		url: SITE_URL,
+		logo: `${SITE_URL}/icon-512.png`
+	};
+
+	// Measure's coaching, in the app's words (LiveQuality.swift); the steady reading is
+	// LiveStabilizer.isConsistent (app main 2431dbc, build 11).
 	const measurePoints = [
 		{ icon: 'stand', title: 'Standing or lying down', body: 'Switch to Lying for babies.' },
 		{
 			icon: 'hint',
 			title: 'Plain coaching',
-			body: '"Step back a little." "Show their feet." "Too dark to see. Turn on a light."'
+			body: '"Show the top of their head." "Point at the floor for a moment." "Too dark to see. Turn on a light."'
+		},
+		{
+			icon: 'target',
+			title: 'It waits for a steady reading',
+			body: 'It captures only when several readings agree, so measuring someone again gives much the same height.'
 		},
 		{
 			icon: 'gauge',
@@ -43,23 +57,31 @@
 </script>
 
 <SeoHead
-	title="Doorframe · The family height tracker for iPhone"
-	description="Doorframe measures your family's height live with your iPhone's LiDAR camera, puts everyone on one door, and follows your kids on WHO and CDC growth charts. Free, with no account. Everything stays on your iPhone."
+	title="Doorframe: Kids' Height Tracker and Growth Chart for iPhone"
+	description="Measure your child's height with your iPhone's LiDAR camera, keep the whole family on one door, and follow kids' growth on WHO and CDC percentile charts. Free."
 	path="/"
-	imageAlt="The Doorframe icon: a door frame on the floor with one red height mark"
 	structuredData={[
-		{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Doorframe', url: SITE_URL },
+		{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+		organization,
 		{
 			'@context': 'https://schema.org',
-			'@type': 'SoftwareApplication',
+			'@type': 'MobileApplication',
 			name: STORE_NAME,
+			alternateName: SITE_NAME,
 			url: SITE_URL,
-			operatingSystem: 'iOS 26 or later',
+			...(APP_STORE_URL ? { downloadUrl: APP_STORE_URL, installUrl: APP_STORE_URL } : {}),
+			image: `${SITE_URL}/icon-512.png`,
+			screenshot: ['library', 'entry-cards', 'chart'].map(
+				(n) => `${SITE_URL}/images/screens/${n}-light.webp`
+			),
+			operatingSystem: 'iOS 26.0 or later',
 			applicationCategory: 'LifestyleApplication',
+			isAccessibleForFree: true,
 			offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 			description:
-				"Measure your family's height live with LiDAR, see everyone on one door, and follow your kids on WHO and CDC growth charts.",
-			author: { '@type': 'Organization', name: COMPANY, url: SITE_URL }
+				'Point your iPhone at them and hold still. Doorframe measures height by itself, keeps the whole family on one door, and charts how your kids grow.',
+			publisher: organization,
+			author: organization
 		}
 	]}
 />
@@ -67,10 +89,11 @@
 <Hero />
 
 <div id="features">
-	<Feature id="measure" eyebrow="Measure" title="Point. Hold still. Done.">
+	<Feature id="measure" eyebrow="Measure" title="Measure your child's height with your iPhone.">
 		<p>
-			Point your iPhone at someone standing on the floor. A measuring pole appears beside them, and
-			when they hold roughly still, Doorframe captures by itself. A wobbly toddler is fine.
+			Point your iPhone at someone standing on the floor and hold still. A measuring pole appears
+			beside them. Once Doorframe can see their head, their feet and the floor, and its readings
+			agree, it captures by itself.
 		</p>
 		<p>Then it asks "Is this Arlo?", so the height lands on the right person.</p>
 		<p class="text-base text-label-3">
@@ -88,7 +111,7 @@
 	</Feature>
 
 	<section class="mx-auto max-w-6xl px-5 pb-12">
-		<div class="fade-in grid gap-10 sm:grid-cols-3" use:reveal>
+		<div class="fade-in grid gap-10 sm:grid-cols-2 lg:grid-cols-4" use:reveal>
 			{#each measurePoints as point (point.title)}
 				<div>
 					<span class="text-accent"><Icon name={point.icon} class="size-7" /></span>
@@ -115,7 +138,7 @@
 		</div>
 	</section>
 
-	<Feature eyebrow="The Doorframe" title="The whole family, on one door." flip>
+	<Feature eyebrow="The Doorframe" title="Track the whole family's height on one door." flip>
 		<p>
 			Everyone's latest mark, in their own colour, on a door drawn to true scale. Tap it for the
 			full door, and turn on history for the kids' older marks.
@@ -126,7 +149,7 @@
 				<PhoneFrame width="min(240px, 42vw)">
 					<Screenshot
 						name="library"
-						alt="The Library: Your Family, with the Doorframe card showing Sam, Maya and Arlo's marks on a line-drawn door, then Arlo's card, then Recent measurements"
+						alt="The Library: Your Family, with the Doorframe card showing Sam, Maya and Arlo's marks on a line-drawn door, then Arlo's card, then Recent measurements; bottom right, the Measure button, a door frame with three pencil marks"
 					/>
 				</PhoneFrame>
 				<div class="mt-16">
@@ -141,23 +164,46 @@
 		{/snippet}
 	</Feature>
 
-	<Feature id="growth" eyebrow="Growing up" title="Watch them grow.">
+	<Feature id="explained" eyebrow="Measurements" title="Every mark, explained.">
 		<p>
-			Babies, children and teens get growth charts from the WHO (to age two) and the CDC (to 20),
-			with their percentile and how fast they're growing.
+			Open a measurement and it fills the screen: the height, its range, how sure Doorframe is, and
+			when.
 		</p>
 		<p>
-			Looking Ahead estimates their grown-up height from their own growth curve, their parents'
-			heights, or both: an estimate, not a promise. You choose who the parents are; Doorframe never
-			guesses.
+			Below, cards explain the number: their percentile, how much they've grown since last time, the
+			accuracy, how it was measured, and how old they were. Tap a card's ⓘ for a one-line
+			explanation.
 		</p>
-		<p>Grown-ups get a steady height card instead of a chart.</p>
+		{#snippet media()}
+			<PhoneFrame>
+				<Screenshot
+					name="entry-cards"
+					alt="Arlo's measurement: 88.5 cm, plus or minus 1.2 cm, high confidence, today at 12:37; below, cards for Percentile (56th, taller than about 56 in 100 children the same age and sex), Since last (+0.9 cm since 10 Aug), Accuracy (±1.2 cm), Method (LiDAR, 1.9 m away, standing) and When (today, age 2 yrs 2 mos)"
+				/>
+			</PhoneFrame>
+		{/snippet}
+	</Feature>
+
+	<Feature id="growth" eyebrow="Growing up" title="Growth charts and percentiles for kids." flip>
+		<p>
+			Babies, children and teens get growth charts from the WHO (to age two) and the CDC (to 20).
+			Their page shows their percentile, how fast they're growing, and milestones along the way.
+		</p>
+		<p>
+			The Grown-up height card estimates how tall they may grow, from their own growth curve, their
+			parents' heights, or both: an estimate, not a promise. You choose who the parents are;
+			Doorframe never guesses.
+		</p>
+		<p>
+			Grown-ups get a steady height instead of a chart: the average of their last measurements, and
+			how consistent they are.
+		</p>
 		<p class="text-base text-label-3">Percentiles are information, not medical advice.</p>
 		{#snippet media()}
 			<PhoneFrame>
 				<Screenshot
 					name="chart"
-					alt="Arlo's page: Looking Ahead shows an estimated grown-up height of 170.9 cm to 185.4 cm, an estimate, not a promise, and says Arlo passes Maya at about 14; below, his measurements rise along the shaded percentile bands of a growth chart"
+					alt="Arlo's page: a Grown-up height card, 170.9 cm to 185.4 cm, an estimate from CDC data and parents' heights, not a promise; a Milestone card, Age 14, Arlo passes Maya in height; then his growth chart, his measurements rising along the shaded percentile bands"
 				/>
 			</PhoneFrame>
 		{/snippet}

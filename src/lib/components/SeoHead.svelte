@@ -6,7 +6,14 @@
   Proprietary and confidential.
 -->
 <script lang="ts">
-	import { APP_STORE_URL, SITE_NAME, SITE_URL, DEFAULT_OG_IMAGE } from '$lib/constants/app';
+	import {
+		APP_STORE_ID,
+		COMPANY,
+		DEFAULT_OG_IMAGE,
+		DEFAULT_OG_IMAGE_ALT,
+		SITE_NAME,
+		SITE_URL
+	} from '$lib/constants/app';
 
 	type StructuredData = Record<string, unknown> | Array<Record<string, unknown>>;
 
@@ -16,8 +23,9 @@
 		path,
 		ogType = 'website',
 		image = DEFAULT_OG_IMAGE,
-		imageAlt = `${SITE_NAME} preview`,
+		imageAlt = DEFAULT_OG_IMAGE_ALT,
 		noindex = false,
+		breadcrumb,
 		structuredData
 	}: {
 		title: string;
@@ -27,24 +35,39 @@
 		image?: string;
 		imageAlt?: string;
 		noindex?: boolean;
+		/** A sub-page's name: adds a Home › name BreadcrumbList. */
+		breadcrumb?: string;
 		structuredData?: StructuredData;
 	} = $props();
 
 	const canonicalUrl = $derived(`${SITE_URL}${path === '/' ? '' : path}`);
 	const imageUrl = $derived(image.startsWith('http') ? image : `${SITE_URL}${image}`);
 	const robots = $derived(noindex ? 'noindex, nofollow' : 'index, follow');
-	const structuredDataItems = $derived(
-		structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []
+	const breadcrumbList = $derived(
+		breadcrumb
+			? {
+					'@context': 'https://schema.org',
+					'@type': 'BreadcrumbList',
+					itemListElement: [
+						{ '@type': 'ListItem', position: 1, name: SITE_NAME, item: SITE_URL },
+						{ '@type': 'ListItem', position: 2, name: breadcrumb, item: canonicalUrl }
+					]
+				}
+			: null
 	);
+	const structuredDataItems = $derived([
+		...(structuredData ? (Array.isArray(structuredData) ? structuredData : [structuredData]) : []),
+		...(breadcrumbList ? [breadcrumbList] : [])
+	]);
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 	<meta name="description" content={description} />
-	<meta name="author" content="Daivat Creations" />
+	<meta name="author" content={COMPANY} />
 	<meta name="robots" content={robots} />
-	{#if APP_STORE_URL}
-		<meta name="apple-itunes-app" content={`app-argument=${APP_STORE_URL}`} />
+	{#if APP_STORE_ID}
+		<meta name="apple-itunes-app" content={`app-id=${APP_STORE_ID}`} />
 	{/if}
 	{#if !noindex}
 		<link rel="canonical" href={canonicalUrl} />
@@ -57,6 +80,11 @@
 	<meta property="og:title" content={title} />
 	<meta property="og:description" content={description} />
 	<meta property="og:image" content={imageUrl} />
+	{#if image === DEFAULT_OG_IMAGE}
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta property="og:image:type" content="image/png" />
+	{/if}
 	<meta property="og:image:alt" content={imageAlt} />
 
 	<meta name="twitter:card" content="summary_large_image" />
