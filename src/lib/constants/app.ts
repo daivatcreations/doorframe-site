@@ -14,6 +14,13 @@ export const SITE_URL = 'https://doorframefamily.com';
 export const COMPANY = 'Daivat Creations';
 // The same address as Meontor's site (owner, 2026-10-05). One line to change.
 export const SUPPORT_EMAIL = 'graymodule@proton.me';
-// Null until the app is on the App Store; the CTA reads "Coming soon".
-export const APP_STORE_URL: string | null = null;
+// The App Store ID (digits only), from the app side once it's approved. Null until then:
+// the CTA reads "Coming soon" and there's no Smart App Banner. Setting it fills both.
+export const APP_STORE_ID: string | null = null;
+export const APP_STORE_URL: string | null = APP_STORE_ID
+	? `https://apps.apple.com/app/id${APP_STORE_ID}`
+	: null;
+// 1200 × 630: the line-drawn door and the app's pages, made from scripts/og-image.html.
 export const DEFAULT_OG_IMAGE = '/images/og-image.png';
+export const DEFAULT_OG_IMAGE_ALT =
+	"Doorframe, the kids' height tracker for iPhone: a line-drawn door frame with the family's height marks, beside a measurement and the cards that explain it";

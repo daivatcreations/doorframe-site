@@ -9,31 +9,28 @@
   The Library's Moments shelf, drawn rather than photographed. Every title and
   detail is a sentence the app writes (Moment.title/detail in HomeCards.swift)
   about the sample family, in centimetres; "Tap to measure." is left off the
-  last, since a picture can't be tapped.
+  last, since a picture can't be tapped. Styled like the app's cards (build 11,
+  Photos Memories): with no photo, the person's colour deepened toward the text,
+  white words, and the moment's symbol large and faint in the corner. Every
+  moment here is Arlo's, so every card is his green.
 -->
 <script lang="ts">
 	import { reveal } from '$lib/actions/reveal';
+	import Icon from './Icon.svelte';
 
 	const moments = [
-		{ title: 'Arlo grew 2.1 cm', detail: 'Since 5 Jul', from: '#2f9e63', to: '#1d6e43' },
+		{ icon: 'grew', title: 'Arlo grew 0.9 cm', detail: 'Since 10 Aug' },
 		{
+			icon: 'will-pass',
 			title: 'Arlo passes Maya at about 14',
-			detail: 'If they stay on their growth curve.',
-			from: '#7a5ae0',
-			to: '#5236b4'
+			detail: 'If they stay on their growth curve.'
 		},
 		{
+			icon: 'sparkles',
 			title: 'Arlo may grow to 170.9 cm – 185.4 cm',
-			detail: "An estimate from CDC data and parents' heights, not a promise.",
-			from: '#1e86a8',
-			to: '#125f7a'
+			detail: "An estimate from CDC data and parents' heights, not a promise."
 		},
-		{
-			title: 'Time to measure Arlo',
-			detail: 'Last measured 46 days ago.',
-			from: '#d0463a',
-			to: '#a12a22'
-		}
+		{ icon: 'ruler', title: 'Time to measure Arlo', detail: 'Last measured 46 days ago.' }
 	];
 </script>
 
@@ -52,13 +49,22 @@
 		<ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 			{#each moments as m (m.title)}
 				<li
-					class="flex min-h-36 flex-col rounded-2xl p-5 text-white"
-					style:background="linear-gradient(160deg, {m.from}, {m.to})"
+					class="moment relative flex min-h-36 flex-col justify-end overflow-hidden rounded-2xl p-5"
 				>
-					<p class="font-rounded text-lg leading-snug font-bold">{m.title}</p>
-					<p class="mt-2 text-sm leading-snug text-white/85">{m.detail}</p>
+					<span class="absolute -top-3 -right-3 text-white/15">
+						<Icon name={m.icon} class="size-28" />
+					</span>
+					<p class="relative font-rounded text-lg leading-snug font-bold text-white">{m.title}</p>
+					<p class="relative mt-1 text-sm leading-snug text-white/90">{m.detail}</p>
 				</li>
 			{/each}
 		</ul>
 	</div>
 </section>
+
+<style>
+	/* Arlo's palette green (#6FCF97), deepened as the app does toward its text. */
+	.moment {
+		background: linear-gradient(160deg, #3a8a5b, #1e5536);
+	}
+</style>

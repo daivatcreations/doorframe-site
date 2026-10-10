@@ -35,4 +35,15 @@ describe('SeoHead', () => {
 		const { head } = render(SeoHead, { props: { title: 'x', description: 'x', path: '/support' } });
 		expect(head).toContain('href="https://doorframefamily.com/support"');
 	});
+	it('adds a Home › page breadcrumb on a sub-page', () => {
+		const { head } = render(SeoHead, {
+			props: { title: 'x', description: 'x', path: '/support', breadcrumb: 'Support' }
+		});
+		expect(head).toContain('"@type":"BreadcrumbList"');
+		expect(head).toContain('"item":"https://doorframefamily.com/support"');
+	});
+	it('has no Smart App Banner until there is an App Store ID', () => {
+		const { head } = render(SeoHead, { props: { title: 'x', description: 'x', path: '/' } });
+		expect(head).not.toContain('apple-itunes-app');
+	});
 });

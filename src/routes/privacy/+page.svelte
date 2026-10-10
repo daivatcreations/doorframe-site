@@ -14,7 +14,11 @@
   and Erase All Data deletes every person, measurement and photo (SettingsView);
   the store is not excluded from device backups. Re-checked 2026-10-06 at main 97fa2a2 (build 8):
   the photo library is never read; the only other usage description is the add-only
-  NSPhotoLibraryAddUsageDescription, for saving a share card (PR #7). Re-check before changing a claim.
+  NSPhotoLibraryAddUsageDescription, for saving a share card (PR #7). Re-checked 2026-10-10 at
+  main 2431dbc (build 11): still no networking code, the same two usage descriptions and privacy
+  manifest; the new on-device measuring recorder (Settings, "Testing") only exists in DEBUG and
+  TestFlight builds (LiveRecordingStore.isAvailable), so the App Store app has none. Re-check before
+  changing a claim.
 -->
 <script lang="ts">
 	import SeoHead from '$lib/components/SeoHead.svelte';
@@ -23,10 +27,10 @@
 </script>
 
 <SeoHead
-	title="Privacy Policy · Doorframe"
-	description="Doorframe keeps your family's heights and photos on your iPhone: no account, no server, no ads, no tracking, no analytics. Nothing is collected."
+	title="Privacy Policy: Doorframe Height Tracker for iPhone"
+	description="Doorframe keeps your family's heights and photos on your iPhone: no account, no server, no ads, no tracking, no analytics in the app. Nothing is collected."
 	path="/privacy"
-	imageAlt="Doorframe privacy policy"
+	breadcrumb="Privacy Policy"
 />
 
 <LegalPage

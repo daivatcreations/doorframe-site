@@ -13,10 +13,10 @@
 </script>
 
 <SeoHead
-	title="Terms of Use · Doorframe"
-	description="The terms for using Doorframe, a free family height tracker for iPhone."
+	title="Terms of Use: Doorframe Height Tracker for iPhone"
+	description="Terms for Doorframe, the free iPhone app that measures your family's height with LiDAR and charts kids' growth. Growth figures aren't medical advice."
 	path="/terms"
-	imageAlt="Doorframe terms of use"
+	breadcrumb="Terms of Use"
 />
 
 <LegalPage

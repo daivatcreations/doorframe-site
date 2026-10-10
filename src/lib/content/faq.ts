@@ -8,6 +8,9 @@
 // One source for the Support page and its FAQPage structured data, so the two cannot drift.
 // Checked against the app's main (2c7e7e6, 1.0 build 6) on 2026-10-05; distance and Capture
 // answers corrected from the app's review (main 3d164be, LiveQuality.standingDistance) on 2026-10-06.
+// Re-checked against main 2431dbc (1.0 build 11) on 2026-10-10: capture waits for agreeing readings
+// (LiveStabilizer.isConsistent) and head, feet and floor; the percentile, grown-up height and
+// consistency answers are the app's own card wording (EntryFacts, PersonFacts).
 export type FaqTopic = { topic: string; items: { q: string; a: string }[] };
 
 export const FAQ: FaqTopic[] = [
@@ -15,8 +18,16 @@ export const FAQ: FaqTopic[] = [
 		topic: 'Measuring',
 		items: [
 			{
-				q: 'Which iPhones can measure live?',
-				a: 'Measuring live uses the LiDAR scanner on the Pro and Pro Max models. Doorframe needs iOS 26 or later. On an iPhone without LiDAR you can still enter heights, for example from a check-up, and see the Doorframe and growth charts.'
+				q: 'Can an iPhone measure height?',
+				a: "Yes, with LiDAR. Doorframe uses the LiDAR scanner on iPhone Pro models to measure someone's height live: point it at them standing on the floor, hold still, and it captures by itself, with a range and how confident it is. On any iPhone you can still enter a height you already have."
+			},
+			{
+				q: 'Which iPhones have LiDAR?',
+				a: 'The Pro and Pro Max models, from iPhone 12 Pro onward. The other models (the standard iPhone, mini, Plus, SE, 16e and Air) have no LiDAR. Doorframe needs iOS 26 or later; without LiDAR you can still enter heights, for example from a check-up, and see the Doorframe and growth charts.'
+			},
+			{
+				q: "How do I measure my child's height at home?",
+				a: 'Take their shoes off and stand them straight on a hard floor, heels down, looking ahead. With Doorframe, point your iPhone at them from about 1.2 to 3.5 metres away, with their head and feet in view, and hold still: it captures by itself, then asks who it is. For a baby, switch to Lying and lay them flat on the floor. Measure at the same time of day each time; people are a little taller in the morning.'
 			},
 			{
 				q: 'How do I measure someone?',
@@ -24,7 +35,7 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: 'How accurate is it?',
-				a: 'Every height shows its range (for example 91.2 cm ± 0.9 cm) and how confident Doorframe is. For the best reading, stand them straight on the floor, show their head and feet, use good light, and hold still. If the range looks wide, measure again.'
+				a: 'Every height shows its range (for example 91.2 cm ± 0.9 cm) and how confident Doorframe is. It captures only when it can see their head, their feet and the floor, and once several readings agree, so measuring someone again gives much the same height: in our testing, usually within about a centimetre between runs. For the best reading, stand them straight, use good light, and hold still. If the range looks wide, measure again.'
 			},
 			{
 				q: 'Does it work for babies?',
@@ -56,12 +67,20 @@ export const FAQ: FaqTopic[] = [
 				a: 'For babies, children and teens: the WHO standards up to age two and the CDC charts from 2 to 20, with the shaded 3rd to 97th and 25th to 75th percentile bands, their current percentile and how fast they are growing. Grown-ups get a steady height card instead.'
 			},
 			{
-				q: 'How does Looking Ahead estimate a grown-up height?',
-				a: "From their own growth curve once they're two, from both parents' heights, or from both. You choose who a child's parents are in their profile; Doorframe never guesses. It shows a range, not one number. It's an estimate, not a promise."
+				q: 'What is a height percentile?',
+				a: "It compares a child's height with children of the same age and sex. The 56th percentile means taller than about 56 in 100 of them. Anywhere from the 3rd to the 97th is typical, and following their own line on the chart matters more than any one number. Doorframe uses the WHO standards to age two and the CDC charts to 20. It's information, not medical advice."
+			},
+			{
+				q: 'How tall will my child be?',
+				a: "Nobody can say for sure, but Doorframe's Grown-up height card gives an estimate: from their own growth curve once they're two (CDC growth data), from both parents' heights, or from both. You choose who a child's parents are in their profile; Doorframe never guesses. It shows a range, not one number. It's an estimate, not a promise: every child grows in their own way, and their doctor can tell you more."
+			},
+			{
+				q: 'Why do grown-ups have no chart?',
+				a: "Grown-ups don't grow, so they get a steady height instead: the average of their last measurements, and how consistent those measurements are. Their height still stands on the Doorframe beside the kids'."
 			},
 			{
 				q: 'Is this medical advice?',
-				a: "No. Growth percentiles and predictions are information, not medical advice. If you're worried about how a child is growing, talk to their doctor."
+				a: "No. Growth percentiles and estimates are information, not medical advice. If you're worried about how a child is growing, talk to their doctor."
 			},
 			{
 				q: 'Can both parents use it?',
