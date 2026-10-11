@@ -11,6 +11,9 @@
 // Re-checked against main 2431dbc (1.0 build 11) on 2026-10-10: capture waits for agreeing readings
 // (LiveStabilizer.isConsistent) and head, feet and floor; the percentile, grown-up height and
 // consistency answers are the app's own card wording (EntryFacts, PersonFacts).
+// Builds 12–13 (main 0027ca3; the standing check in app PR #14, dd31a77) on 2026-10-11: StanceCheck
+// (auto-capture waits while they sit or bend), LiveStabilizer's restart on a posture jump,
+// HeightCheck ("Were they standing up?"), SaveForMenu (New Person…, No One Yet).
 export type FaqTopic = { topic: string; items: { q: string; a: string }[] };
 
 export const FAQ: FaqTopic[] = [
@@ -19,7 +22,7 @@ export const FAQ: FaqTopic[] = [
 		items: [
 			{
 				q: 'Can an iPhone measure height?',
-				a: "Yes, with LiDAR. Doorframe uses the LiDAR scanner on iPhone Pro models to measure someone's height live: point it at them standing on the floor, hold still, and it captures by itself, with a range and how confident it is. On any iPhone you can still enter a height you already have."
+				a: "Yes, with LiDAR. Doorframe uses the LiDAR scanner on iPhone Pro models to measure someone's height live: point it at them standing on the floor, hold still, and it captures by itself once they're standing up straight, with a range and how confident it is. On any iPhone you can still enter a height you already have."
 			},
 			{
 				q: 'Which iPhones have LiDAR?',
@@ -27,15 +30,23 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: "How do I measure my child's height at home?",
-				a: 'Take their shoes off and stand them straight on a hard floor, heels down, looking ahead. With Doorframe, point your iPhone at them from about 1.2 to 3.5 metres away, with their head and feet in view, and hold still: it captures by itself, then asks who it is. For a baby, switch to Lying and lay them flat on the floor. Measure at the same time of day each time; people are a little taller in the morning.'
+				a: "Take their shoes off and stand them straight on a hard floor, heels down, looking ahead. With Doorframe, point your iPhone at them from about 1.2 to 3.5 metres away, with their head and feet in view, and hold still: once they're standing up straight, it captures by itself, then asks who it is. For a baby, switch to Lying and lay them flat on the floor. Measure at the same time of day each time; people are a little taller in the morning."
 			},
 			{
 				q: 'How do I measure someone?',
-				a: "Tap the Measure button in the tab bar. Stand them on the floor, about 1.2 to 3.5 metres away (closer for a baby lying down), with their head and feet in view, and hold roughly still. The ring around Capture fills and Doorframe captures by itself, then asks who it is. You can also tap Capture once it turns green. Turn Auto off if you'd rather always tap."
+				a: 'Tap the Measure button in the tab bar. Stand them on the floor, about 1.2 to 3.5 metres away (closer for a baby lying down), with their head and feet in view, and hold roughly still. The ring around Capture fills and Doorframe captures by itself, then asks who it is. If they sit or bend, it says "Ask them to stand up straight" and waits. You can also tap Capture once it turns green. Turn Auto off if you\'d rather always tap.'
 			},
 			{
 				q: 'How accurate is it?',
-				a: 'Every height shows its range (for example 91.2 cm ± 0.9 cm) and how confident Doorframe is. It captures only when it can see their head, their feet and the floor, and once several readings agree, so measuring someone again gives much the same height: in our testing, usually within about a centimetre between runs. For the best reading, stand them straight, use good light, and hold still. If the range looks wide, measure again.'
+				a: "Every height shows its range (for example 91.2 cm ± 0.9 cm) and how confident Doorframe is. It captures by itself only when it can see their head, their feet and the floor, they're standing up straight, and several readings agree, so measuring someone again gives much the same height: in our testing, usually within about a centimetre between runs. For the best reading, stand them straight, use good light, and hold still. If the range looks wide, measure again."
+			},
+			{
+				q: 'What if my toddler sits down?',
+				a: 'Doorframe checks they\'re standing up straight before it captures by itself. If they sit, squat or kneel, it says "Ask them to stand up straight" and waits; if they sit down partway through, it starts the reading over. And when a new height is clearly shorter than their last one, it asks "Were they standing up?" before you save, so you can retake it.'
+			},
+			{
+				q: "Can I measure someone who isn't in the app yet?",
+				a: 'Yes. When you save, tap the name to choose anyone in the family, New Person… to add them there and then, or No One Yet to decide later. A measurement for no one yet shows "Who is this?" with a Choose Person button.'
 			},
 			{
 				q: 'Does it work for babies?',

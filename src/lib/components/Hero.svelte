@@ -23,7 +23,7 @@
 		</p>
 		<div class="mt-10 flex flex-col items-center gap-3">
 			<AppStoreCta />
-			<p class="text-sm text-label-3">Free, with no account.</p>
+			<p class="text-sm text-label-3">Free for iPhone, with no account.</p>
 		</div>
 	</div>
 	<div
