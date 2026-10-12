@@ -42,8 +42,7 @@
 				Small things worth noticing.
 			</h2>
 			<p class="mt-5 text-lg leading-relaxed text-label-2 sm:text-xl">
-				Doorframe notices how much they've grown, who they'll pass next, and when it's been a while
-				since you measured.
+				How much they grew, who they'll pass next, and when to measure again.
 			</p>
 		</div>
 		<ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

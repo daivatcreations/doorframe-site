@@ -18,8 +18,8 @@
 			The pencil marks on the door frame, without the pencil.
 		</h1>
 		<p class="mt-6 max-w-2xl text-lg leading-relaxed text-label-2 sm:text-xl">
-			Measure your family with your iPhone's LiDAR camera. See everyone on one door. Watch your kids
-			grow.
+			Measure anyone's height with your iPhone's LiDAR camera. See everyone on one door. Watch your
+			kids grow.
 		</p>
 		<div class="mt-10 flex flex-col items-center gap-3">
 			<AppStoreCta />

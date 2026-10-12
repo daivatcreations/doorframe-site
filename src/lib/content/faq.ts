@@ -25,6 +25,10 @@ export const FAQ: FaqTopic[] = [
 				a: "Yes, with LiDAR. Doorframe uses the LiDAR scanner on iPhone Pro models to measure someone's height live: point it at them standing on the floor, hold still, and it captures by itself once they're standing up straight, with a range and how confident it is. On any iPhone you can still enter a height you already have."
 			},
 			{
+				q: 'Is there an app to measure height?',
+				a: "Yes. Doorframe measures height live with an iPhone's LiDAR camera: point it at someone standing on the floor and hold still. It works for anyone, from toddlers to grown-ups, and it's free on the App Store."
+			},
+			{
 				q: 'Which iPhones have LiDAR?',
 				a: 'The Pro and Pro Max models, from iPhone 12 Pro onward. The other models (the standard iPhone, mini, Plus, SE, 16e and Air) have no LiDAR. Doorframe needs iOS 26 or later; without LiDAR you can still enter heights, for example from a check-up, and see the Doorframe and growth charts.'
 			},
@@ -70,6 +74,10 @@ export const FAQ: FaqTopic[] = [
 		topic: 'Family and growth',
 		items: [
 			{
+				q: 'Can I measure grown-ups or friends?',
+				a: 'Yes, anyone. Kids get growth charts; grown-ups get a steady height, the average of their last measurements. Measuring each other for fun works too.'
+			},
+			{
 				q: 'Who can I add?',
 				a: 'Anyone: kids, grown-ups, grandparents. When you add someone, Doorframe asks whether they are a child or a grown-up. Children have a birthday, so their growth can be charted.'
 			},
@@ -106,6 +114,14 @@ export const FAQ: FaqTopic[] = [
 	{
 		topic: 'Privacy and data',
 		items: [
+			{
+				q: 'Is Doorframe free?',
+				a: 'Yes. No in-app purchases, no ads and no account.'
+			},
+			{
+				q: 'Does it work on iPad or Android?',
+				a: 'No. Doorframe is for iPhone, with iOS 26 or later.'
+			},
 			{
 				q: 'Where is my data?',
 				a: "On your iPhone, and nowhere else. Doorframe has no account, no server and no sync, and it has nothing to send your family's heights or photos to."
