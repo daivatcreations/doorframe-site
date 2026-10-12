@@ -8,7 +8,7 @@
 <!--
   The Library's Moments shelf, drawn rather than photographed. Every title and
   detail is a sentence the app writes (Moment.title/detail in HomeCards.swift)
-  about the sample family, in centimetres; "Tap to measure." is left off the
+  about the sample family, in feet and inches (en_US); "Tap to measure." is left off the
   last, since a picture can't be tapped. Styled like the app's cards (build 11,
   Photos Memories): with no photo, the person's colour deepened toward the text,
   white words, and the moment's symbol large and faint in the corner. Every
@@ -19,7 +19,7 @@
 	import Icon from './Icon.svelte';
 
 	const moments = [
-		{ icon: 'grew', title: 'Arlo grew 0.9 cm', detail: 'Since 10 Aug' },
+		{ icon: 'grew', title: 'Arlo grew 0.4″', detail: 'Since Aug 11' },
 		{
 			icon: 'will-pass',
 			title: 'Arlo passes Maya at about 14',
@@ -27,7 +27,7 @@
 		},
 		{
 			icon: 'sparkles',
-			title: 'Arlo may grow to 170.9 cm – 185.4 cm',
+			title: 'Arlo may grow to 5′ 7.3″ – 6′ 1.0″',
 			detail: "An estimate from CDC data and parents' heights, not a promise."
 		},
 		{ icon: 'ruler', title: 'Time to measure Arlo', detail: 'Last measured 46 days ago.' }
@@ -42,8 +42,7 @@
 				Small things worth noticing.
 			</h2>
 			<p class="mt-5 text-lg leading-relaxed text-label-2 sm:text-xl">
-				Doorframe notices how much they've grown, who they'll pass next, and when it's been a while
-				since you measured.
+				How much they grew, who they'll pass next, and when to measure again.
 			</p>
 		</div>
 		<ul class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

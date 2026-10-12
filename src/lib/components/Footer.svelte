@@ -12,6 +12,7 @@
 
 	const links = [
 		{ href: '/#measure', label: 'Measure' },
+		{ href: '/how-to-measure-height', label: 'How to measure' },
 		{ href: '/support', label: 'Support' },
 		{ href: '/privacy', label: 'Privacy' },
 		{ href: '/terms', label: 'Terms' },

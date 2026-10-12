@@ -26,10 +26,11 @@
 	const LABEL_ROOM = 96;
 
 	// The app's sample family (SampleData.swift), shortest first; colours are the palette's `solid`.
+	// Labels are HeightFormatter's feet and inches (en_US); `m` places the marks.
 	const family = [
-		{ name: 'Arlo', m: 0.885, label: '88.5 cm', colour: '#6fcf97' },
-		{ name: 'Maya', m: 1.64, label: '164.0 cm', colour: '#5ac8fa' },
-		{ name: 'Sam', m: 1.8, label: '180.0 cm', colour: '#5e5ce6' }
+		{ name: 'Arlo', m: 0.885, label: '2′ 10.9″', colour: '#6fcf97' },
+		{ name: 'Maya', m: 1.64, label: '5′ 4.6″', colour: '#5ac8fa' },
+		{ name: 'Sam', m: 1.8, label: '5′ 10.9″', colour: '#5e5ce6' }
 	];
 
 	// DoorLayout: px per metre is whichever of height and width runs out first.

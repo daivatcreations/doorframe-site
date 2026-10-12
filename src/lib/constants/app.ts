@@ -14,9 +14,11 @@ export const SITE_URL = 'https://doorframefamily.com';
 export const COMPANY = 'Daivat Creations';
 // The same address as Meontor's site (owner, 2026-10-05). One line to change.
 export const SUPPORT_EMAIL = 'graymodule@proton.me';
-// The App Store ID (digits only), from the app side once it's approved. Null until then:
-// the CTA reads "Coming soon" and there's no Smart App Banner. Setting it fills both.
-export const APP_STORE_ID: string | null = null;
+// The App Store subtitle (owner, 2026-10-10). The site doesn't show it; it's here to keep in step.
+export const STORE_SUBTITLE = 'Kids’ Growth Chart & Trends';
+// The App Store ID (app side, 2026-10-11, 1.0). It makes the badge CTA, the Smart App Banner
+// and the JSON-LD's downloadUrl; null brings back "Coming soon" with no banner.
+export const APP_STORE_ID: string | null = '6819159306';
 export const APP_STORE_URL: string | null = APP_STORE_ID
 	? `https://apps.apple.com/app/id${APP_STORE_ID}`
 	: null;
