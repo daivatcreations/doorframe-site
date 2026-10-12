@@ -34,15 +34,15 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: "How do I measure my child's height at home?",
-				a: "Take their shoes off and stand them straight on a hard floor, heels down, looking ahead. With Doorframe, point your iPhone at them from about 1.2 to 3.5 metres away, with their head and feet in view, and hold still: once they're standing up straight, it captures by itself, then asks who it is. For a baby, switch to Lying and lay them flat on the floor. Measure at the same time of day each time; people are a little taller in the morning."
+				a: "Take their shoes off and stand them straight on a hard floor, heels down, looking ahead. With Doorframe, point your iPhone at them from about 4 to 11 feet (1.2 to 3.5 m) away, with their head and feet in view, and hold still: once they're standing up straight, it captures by itself, then asks who it is. For a baby, switch to Lying and lay them flat on the floor. Measure at the same time of day each time; people are a little taller in the morning."
 			},
 			{
 				q: 'How do I measure someone?',
-				a: 'Tap the Measure button in the tab bar. Stand them on the floor, about 1.2 to 3.5 metres away (closer for a baby lying down), with their head and feet in view, and hold roughly still. The ring around Capture fills and Doorframe captures by itself, then asks who it is. If they sit or bend, it says "Ask them to stand up straight" and waits. You can also tap Capture once it turns green. Turn Auto off if you\'d rather always tap.'
+				a: 'Tap the Measure button in the tab bar. Stand them on the floor, about 4 to 11 feet away (closer for a baby lying down), with their head and feet in view, and hold roughly still. The ring around Capture fills and Doorframe captures by itself, then asks who it is. If they sit or bend, it says "Ask them to stand up straight" and waits. You can also tap Capture once it turns green. Turn Auto off if you\'d rather always tap.'
 			},
 			{
 				q: 'How accurate is it?',
-				a: "Every height shows its range (for example 91.2 cm ± 0.9 cm) and how confident Doorframe is. It captures by itself only when it can see their head, their feet and the floor, they're standing up straight, and several readings agree, so measuring someone again gives much the same height: in our testing, usually within about a centimetre between runs. For the best reading, stand them straight, use good light, and hold still. If the range looks wide, measure again."
+				a: "Every height shows its range (for example 2′ 11.8″ ± 0.4″) and how confident Doorframe is. It captures by itself only when it can see their head, their feet and the floor, they're standing up straight, and several readings agree, so measuring someone again gives much the same height: in our testing, usually within about half an inch between runs. For the best reading, stand them straight, use good light, and hold still. If the range looks wide, measure again."
 			},
 			{
 				q: 'What if my toddler sits down?',
@@ -136,7 +136,7 @@ export const FAQ: FaqTopic[] = [
 			},
 			{
 				q: 'How do I switch between centimetres and feet and inches?',
-				a: 'Doorframe follows your region: feet and inches in the US, centimetres elsewhere. To choose, go to Settings, then Units.'
+				a: "Doorframe shows feet and inches or centimetres, following your iPhone's region: feet and inches in the US, centimetres elsewhere. To choose, go to Settings, then Units."
 			},
 			{
 				q: 'What happens if I delete the app?',

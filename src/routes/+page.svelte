@@ -45,13 +45,17 @@
 		{
 			icon: 'gauge',
 			title: 'Every height shows its range',
-			body: 'Like ± 0.9 cm, and how sure it is.'
+			body: 'Like ± 0.4″, and how sure it is.'
 		}
 	];
 
 	const also = [
 		{ icon: 'bell', title: 'Reminders to measure', body: 'Per person, scheduled on your iPhone.' },
-		{ icon: 'ruler', title: 'Your units', body: 'Feet and inches or centimetres, by region.' },
+		{
+			icon: 'ruler',
+			title: 'Your units',
+			body: "Feet and inches or centimetres, by your iPhone's region or in Settings."
+		},
 		{ icon: 'share', title: 'Export to CSV', body: 'Every measurement, in a file you share.' },
 		{ icon: 'stand', title: 'Any age', body: 'Kids, grown-ups, and friends measuring for fun.' }
 	];
@@ -105,7 +109,7 @@
 
 <div id="features">
 	<Feature id="measure" eyebrow="Measure" title="Measure your child's height with your iPhone.">
-		<p>Point, hold still, done. It captures by itself from 1.2 to 3.5 m away.</p>
+		<p>Point, hold still, done. It captures by itself from about 4 to 11 feet away.</p>
 		<p class="text-base text-label-3">
 			Live measuring needs LiDAR (iPhone 12 Pro and later Pro models). Any iPhone can type a height.
 			<a href="/how-to-measure-height" class="text-accent underline underline-offset-2"
@@ -118,7 +122,7 @@
 				<Screenshot
 					name="measure-live"
 					dark={false}
-					alt="Doorframe's Measure screen: a toddler standing on a wooden floor, measured live at 91.0 cm, plus or minus 0.9 cm, high confidence, while it says Hold still. Capturing"
+					alt="Doorframe's Measure screen: a toddler standing on a wooden floor, measured live at 2 feet 11.8 inches, plus or minus 0.4 inches, high confidence, while it says Hold still. Capturing"
 				/>
 			</PhoneFrame>
 		{/snippet}
@@ -139,10 +143,10 @@
 			<div
 				class="inline-flex items-center gap-4 rounded-full bg-grouped py-3 pr-6 pl-7"
 				role="img"
-				aria-label="A reading: 91.2 cm, plus or minus 0.9 cm, high confidence"
+				aria-label="A reading: 2 feet 11.8 inches, plus or minus 0.4 inches, high confidence"
 			>
-				<span class="font-rounded text-3xl font-bold tabular-nums">91.2 cm</span>
-				<span class="text-sm leading-tight text-label-2">± 0.9 cm<br />High confidence</span>
+				<span class="font-rounded text-3xl font-bold tabular-nums">2′ 11.8″</span>
+				<span class="text-sm leading-tight text-label-2">± 0.4″<br />High confidence</span>
 				<span class="flex items-end gap-0.5 text-go" aria-hidden="true">
 					<span class="h-2 w-1.5 rounded-sm bg-current"></span>
 					<span class="h-3 w-1.5 rounded-sm bg-current"></span>
@@ -161,23 +165,21 @@
 		<p>Sitting, squatting or kneeling? It waits.</p>
 		<p>Shorter than last time? It asks "Were they standing up?" before you save.</p>
 		{#snippet media()}
-			<div class="flex items-start gap-4 sm:gap-6">
-				<PhoneFrame width="min(240px, 42vw)">
+			<div class="flex flex-col items-center gap-8">
+				<!-- Measure's tip while they sit, squat or kneel (LiveQuality .standUp), as the app's capsule. -->
+				<p
+					class="inline-flex items-center gap-2 rounded-full bg-[#1c1c1e]/85 px-4 py-2 text-sm font-medium text-white"
+				>
+					<Icon name="stand" class="size-4" />
+					Ask them to stand up straight
+				</p>
+				<PhoneFrame>
 					<Screenshot
-						name="stand-up"
+						name="check-card"
 						dark={false}
-						alt="Measure, with the tip Ask them to stand up straight above a figure in the camera view"
+						alt="Save for Arlo? 1 foot 11.7 inches, plus or minus 0.4 inches, with a card: Were they standing up? 11.2 inches shorter than earlier today, and they looked like they were sitting or bending. If so, retake it. Retake and Save below"
 					/>
 				</PhoneFrame>
-				<div class="mt-16">
-					<PhoneFrame width="min(240px, 42vw)">
-						<Screenshot
-							name="check-card"
-							dark={false}
-							alt="Save for Arlo? 60.2 cm, plus or minus 0.9 cm, with a card: Were they standing up? 28.3 cm shorter than earlier today, and they looked like they were sitting or bending. If so, retake it. Retake and Save below"
-						/>
-					</PhoneFrame>
-				</div>
 			</div>
 		{/snippet}
 	</Feature>
@@ -199,7 +201,7 @@
 					<PhoneFrame width="min(240px, 42vw)">
 						<Screenshot
 							name="wall"
-							alt="The full Doorframe: a line-drawn door frame with a ruler; Sam 180.0 cm, Maya 164.0 cm and Arlo 88.5 cm as coloured marks, Arlo's older heights as faint ticks"
+							alt="The full Doorframe: a line-drawn door frame with a ruler in feet; Sam 5 feet 10.9 inches, Maya 5 feet 4.6 inches and Arlo 2 feet 10.9 inches as coloured marks, Arlo's older heights as faint ticks"
 						/>
 					</PhoneFrame>
 				</div>
@@ -213,7 +215,7 @@
 			<PhoneFrame>
 				<Screenshot
 					name="entry-cards"
-					alt="Arlo's measurement: 88.5 cm, plus or minus 1.2 cm, high confidence, today at 12:37; below, cards for Percentile (56th, taller than about 56 in 100 children the same age and sex), Since last (+0.9 cm since 10 Aug), Accuracy (±1.2 cm), Method (LiDAR, 1.9 m away, standing) and When (today, age 2 yrs 2 mos)"
+					alt="Arlo's measurement: 2 feet 10.9 inches, plus or minus 0.5 inches, high confidence, today; below, cards for Percentile (56th, taller than about 56 in 100 children the same age and sex), Since last (+0.4 inches since Aug 11), Accuracy (±0.5 inches), Method (LiDAR, 6.2 feet away, standing) and When (today, age 2 yrs 2 mos)"
 				/>
 			</PhoneFrame>
 		{/snippet}
@@ -226,7 +228,7 @@
 			<PhoneFrame>
 				<Screenshot
 					name="chart"
-					alt="Arlo's page: a Grown-up height card, 170.9 cm to 185.4 cm, an estimate from CDC data and parents' heights, not a promise; a Milestone card, Age 14, Arlo passes Maya in height; then his growth chart, his measurements rising along the shaded percentile bands"
+					alt="Arlo's page: a Grown-up height card, 5 feet 7.3 inches to 6 feet 1.0 inch, an estimate from CDC data and parents' heights, not a promise; a Milestone card, Age 14, Arlo passes Maya in height; then his growth chart, his measurements rising along the shaded percentile bands"
 				/>
 			</PhoneFrame>
 		{/snippet}

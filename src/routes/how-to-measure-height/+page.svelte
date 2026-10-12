@@ -26,7 +26,7 @@
 	];
 
 	const withDoorframe = [
-		'Shoes off. Stand them on the floor, 1.2 to 3.5\u00a0m from your iPhone.',
+		'Shoes off. Stand them on the floor, about 4 to 11\u00a0feet from your iPhone.',
 		'Open Measure. Keep their head and feet in view.',
 		'Hold still. Doorframe captures once they stand up straight and its readings agree.',
 		'It asks who it is, and the height goes on their page and the family door.'
@@ -88,7 +88,7 @@
 						{#each withDoorframe as step (step)}<li>{step}</li>{/each}
 					</ol>
 					<p class="mt-5 leading-relaxed text-label-2">
-						Every height shows its range, like 91.0 cm ± 0.9 cm. No pencil on the wall, and no book
+						Every height shows its range, like 2′ 11.8″ ± 0.4″. No pencil on the wall, and no book
 						on their head.
 					</p>
 					<p class="mt-3 text-base text-label-3">
@@ -101,7 +101,7 @@
 						<Screenshot
 							name="measure-live"
 							dark={false}
-							alt="Doorframe's Measure screen: a toddler standing on a wooden floor, measured live at 91.0 cm, plus or minus 0.9 cm"
+							alt="Doorframe's Measure screen: a toddler standing on a wooden floor, measured live at 2 feet 11.8 inches, plus or minus 0.4 inches"
 						/>
 					</PhoneFrame>
 				</div>
