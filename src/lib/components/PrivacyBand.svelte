@@ -15,7 +15,7 @@
 		{
 			icon: 'iphone',
 			title: 'On this iPhone',
-			body: 'Heights and photos are measured and stored on your iPhone. Doorframe has nothing to send them to.'
+			body: 'Heights and photos stay on your iPhone. Doorframe has no server.'
 		},
 		{
 			icon: 'eye-slash',
@@ -25,7 +25,7 @@
 		{
 			icon: 'trash',
 			title: 'Yours to erase',
-			body: 'Never shared or sold. Erase everything any time in Settings.'
+			body: 'Never shared or sold. Erase it all in Settings.'
 		}
 	];
 </script>

@@ -25,7 +25,7 @@
 </script>
 
 <SeoHead
-	title="Doorframe Help: Measuring Height, LiDAR iPhones, Growth FAQ"
+	title="Doorframe FAQ: Measuring Height, LiDAR iPhones, Kids' Growth"
 	description="How to measure your child's height with your iPhone, which iPhones have LiDAR, what a height percentile means, and how Doorframe keeps your data on your iPhone."
 	path="/support"
 	breadcrumb="Support"

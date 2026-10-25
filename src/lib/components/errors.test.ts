@@ -3,6 +3,7 @@ import { render } from 'svelte/server';
 import ErrorMessage from './ErrorMessage.svelte';
 import SeoHead from './SeoHead.svelte';
 import { findCopyViolations } from '../../../scripts/verify-lib.js';
+import { APP_STORE_ID } from '$lib/constants/app';
 
 // The error page is never prerendered, so `pnpm verify` cannot see it; these do.
 describe('ErrorMessage', () => {
@@ -42,8 +43,13 @@ describe('SeoHead', () => {
 		expect(head).toContain('"@type":"BreadcrumbList"');
 		expect(head).toContain('"item":"https://doorframefamily.com/support"');
 	});
-	it('has no Smart App Banner until there is an App Store ID', () => {
+	it('has a Smart App Banner exactly when there is an App Store ID', () => {
 		const { head } = render(SeoHead, { props: { title: 'x', description: 'x', path: '/' } });
-		expect(head).not.toContain('apple-itunes-app');
+		if (APP_STORE_ID) {
+			expect(APP_STORE_ID).toMatch(/^\d+$/);
+			expect(head).toContain(`<meta name="apple-itunes-app" content="app-id=${APP_STORE_ID}"/>`);
+		} else {
+			expect(head).not.toContain('apple-itunes-app');
+		}
 	});
 });

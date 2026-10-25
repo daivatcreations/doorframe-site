@@ -28,37 +28,42 @@
 	};
 
 	// Measure's coaching, in the app's words (LiveQuality.swift); the steady reading is
-	// LiveStabilizer.isConsistent (app main 2431dbc, build 11).
+	// LiveStabilizer.isConsistent (app main 2431dbc, build 11); standing up straight is
+	// StanceCheck (build 13, app PR #14).
 	const measurePoints = [
-		{ icon: 'stand', title: 'Standing or lying down', body: 'Switch to Lying for babies.' },
+		{ icon: 'stand', title: 'Standing or lying down', body: 'Lying is for babies.' },
 		{
 			icon: 'hint',
 			title: 'Plain coaching',
-			body: '"Show the top of their head." "Point at the floor for a moment." "Too dark to see. Turn on a light."'
+			body: '"Show the top of their head." "Ask them to stand up straight."'
 		},
 		{
 			icon: 'target',
 			title: 'It waits for a steady reading',
-			body: 'It captures only when several readings agree, so measuring someone again gives much the same height.'
+			body: 'Several readings must agree before it captures.'
 		},
 		{
 			icon: 'gauge',
 			title: 'Every height shows its range',
-			body: 'And how sure Doorframe is, so you know when to measure again.'
+			body: 'Like ± 0.4″, and how sure it is.'
 		}
 	];
 
 	const also = [
 		{ icon: 'bell', title: 'Reminders to measure', body: 'Per person, scheduled on your iPhone.' },
-		{ icon: 'ruler', title: 'Your units', body: 'Feet and inches or centimetres, by region.' },
+		{
+			icon: 'ruler',
+			title: 'Your units',
+			body: "Feet and inches or centimetres, by your iPhone's region or in Settings."
+		},
 		{ icon: 'share', title: 'Export to CSV', body: 'Every measurement, in a file you share.' },
-		{ icon: 'half-circle', title: 'Light and dark', body: 'And larger text, with Dynamic Type.' }
+		{ icon: 'stand', title: 'Any age', body: 'Kids, grown-ups, and friends measuring for fun.' }
 	];
 </script>
 
 <SeoHead
-	title="Doorframe: Kids' Height Tracker and Growth Chart for iPhone"
-	description="Measure your child's height with your iPhone's LiDAR camera, keep the whole family on one door, and follow kids' growth on WHO and CDC percentile charts. Free."
+	title="Doorframe: Height Measuring App for Kids and Family, iPhone"
+	description="Measure your child's height, or anyone's, with your iPhone's LiDAR camera. Track kids' growth on WHO and CDC percentile charts, the whole family on one door. Free."
 	path="/"
 	structuredData={[
 		{ '@context': 'https://schema.org', '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
@@ -69,17 +74,31 @@
 			name: STORE_NAME,
 			alternateName: SITE_NAME,
 			url: SITE_URL,
-			...(APP_STORE_URL ? { downloadUrl: APP_STORE_URL, installUrl: APP_STORE_URL } : {}),
+			...(APP_STORE_URL
+				? { downloadUrl: APP_STORE_URL, installUrl: APP_STORE_URL, sameAs: APP_STORE_URL }
+				: {}),
 			image: `${SITE_URL}/icon-512.png`,
-			screenshot: ['library', 'entry-cards', 'chart'].map(
+			screenshot: ['measure-live', 'library', 'entry-cards', 'chart'].map(
 				(n) => `${SITE_URL}/images/screens/${n}-light.webp`
 			),
 			operatingSystem: 'iOS 26.0 or later',
 			applicationCategory: 'LifestyleApplication',
+			contentRating: '4+',
 			isAccessibleForFree: true,
 			offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
 			description:
 				'Point your iPhone at them and hold still. Doorframe measures height by itself, keeps the whole family on one door, and charts how your kids grow.',
+			featureList: [
+				'Measure height live with the LiDAR camera',
+				'Waits until they stand up straight',
+				'Lying mode for babies',
+				'WHO and CDC growth charts with percentiles',
+				'Estimated grown-up height',
+				'The whole family on one door, any age',
+				'Reminders to measure',
+				'CSV export',
+				'No account, data stays on your iPhone'
+			],
 			publisher: organization,
 			author: organization
 		}
@@ -90,21 +109,20 @@
 
 <div id="features">
 	<Feature id="measure" eyebrow="Measure" title="Measure your child's height with your iPhone.">
-		<p>
-			Point your iPhone at someone standing on the floor and hold still. A measuring pole appears
-			beside them. Once Doorframe can see their head, their feet and the floor, and its readings
-			agree, it captures by itself.
-		</p>
-		<p>Then it asks "Is this Arlo?", so the height lands on the right person.</p>
+		<p>Point, hold still, done. It captures by itself from about 4 to 11 feet away.</p>
 		<p class="text-base text-label-3">
-			Measuring live needs an iPhone with LiDAR: the Pro and Pro Max models. On any iPhone, you can
-			enter a height from a check-up.
+			Live measuring needs LiDAR (iPhone 12 Pro and later Pro models). Any iPhone can type a height.
+			<a href="/how-to-measure-height" class="text-accent underline underline-offset-2"
+				>How to measure height at home</a
+			>
 		</p>
 		{#snippet media()}
 			<PhoneFrame>
+				<!-- The app's real Measure screen over an AI-generated scene (no real child), as on the App Store. -->
 				<Screenshot
-					name="confirm"
-					alt="Save measurement: Is this Arlo? 91.4 cm, plus or minus 0.9 cm, high confidence, standing, with Retake and Save"
+					name="measure-live"
+					dark={false}
+					alt="Doorframe's Measure screen: a toddler standing on a wooden floor, measured live at 2 feet 11.8 inches, plus or minus 0.4 inches, high confidence, while it says Hold still. Capturing"
 				/>
 			</PhoneFrame>
 		{/snippet}
@@ -125,10 +143,10 @@
 			<div
 				class="inline-flex items-center gap-4 rounded-full bg-grouped py-3 pr-6 pl-7"
 				role="img"
-				aria-label="A reading: 91.2 cm, plus or minus 0.9 cm, high confidence"
+				aria-label="A reading: 2 feet 11.8 inches, plus or minus 0.4 inches, high confidence"
 			>
-				<span class="font-rounded text-3xl font-bold tabular-nums">91.2 cm</span>
-				<span class="text-sm leading-tight text-label-2">± 0.9 cm<br />High confidence</span>
+				<span class="font-rounded text-3xl font-bold tabular-nums">2′ 11.8″</span>
+				<span class="text-sm leading-tight text-label-2">± 0.4″<br />High confidence</span>
 				<span class="flex items-end gap-0.5 text-go" aria-hidden="true">
 					<span class="h-2 w-1.5 rounded-sm bg-current"></span>
 					<span class="h-3 w-1.5 rounded-sm bg-current"></span>
@@ -138,12 +156,39 @@
 		</div>
 	</section>
 
-	<Feature eyebrow="The Doorframe" title="Track the whole family's height on one door." flip>
+	<Feature
+		id="standing"
+		eyebrow="Wriggly toddlers"
+		title="It waits until they stand up straight."
+		flip
+	>
+		<p>Sitting, squatting or kneeling? It waits.</p>
+		<p>Shorter than last time? It asks "Were they standing up?" before you save.</p>
+		{#snippet media()}
+			<div class="flex flex-col items-center gap-8">
+				<!-- Measure's tip while they sit, squat or kneel (LiveQuality .standUp), as the app's capsule. -->
+				<p
+					class="inline-flex items-center gap-2 rounded-full bg-[#1c1c1e]/85 px-4 py-2 text-sm font-medium text-white"
+				>
+					<Icon name="stand" class="size-4" />
+					Ask them to stand up straight
+				</p>
+				<PhoneFrame>
+					<Screenshot
+						name="check-card"
+						dark={false}
+						alt="Save for Arlo? 1 foot 11.7 inches, plus or minus 0.4 inches, with a card: Were they standing up? 11.2 inches shorter than earlier today, and they looked like they were sitting or bending. If so, retake it. Retake and Save below"
+					/>
+				</PhoneFrame>
+			</div>
+		{/snippet}
+	</Feature>
+
+	<Feature eyebrow="The Doorframe" title="Track the whole family's height on one door.">
 		<p>
-			Everyone's latest mark, in their own colour, on a door drawn to true scale. Tap it for the
-			full door, and turn on history for the kids' older marks.
+			Everyone's latest mark in their own colour, at true scale. Turn on history for the kids' older
+			marks.
 		</p>
-		<p>Then a card for each person, and every measurement in a library you can browse.</p>
 		{#snippet media()}
 			<div class="flex items-start gap-4 sm:gap-6">
 				<PhoneFrame width="min(240px, 42vw)">
@@ -156,7 +201,7 @@
 					<PhoneFrame width="min(240px, 42vw)">
 						<Screenshot
 							name="wall"
-							alt="The full Doorframe: a line-drawn door frame with a ruler; Sam 180.0 cm, Maya 164.0 cm and Arlo 88.5 cm as coloured marks, Arlo's older heights as faint ticks"
+							alt="The full Doorframe: a line-drawn door frame with a ruler in feet; Sam 5 feet 10.9 inches, Maya 5 feet 4.6 inches and Arlo 2 feet 10.9 inches as coloured marks, Arlo's older heights as faint ticks"
 						/>
 					</PhoneFrame>
 				</div>
@@ -164,46 +209,26 @@
 		{/snippet}
 	</Feature>
 
-	<Feature id="explained" eyebrow="Measurements" title="Every mark, explained.">
-		<p>
-			Open a measurement and it fills the screen: the height, its range, how sure Doorframe is, and
-			when.
-		</p>
-		<p>
-			Below, cards explain the number: their percentile, how much they've grown since last time, the
-			accuracy, how it was measured, and how old they were. Tap a card's ⓘ for a one-line
-			explanation.
-		</p>
+	<Feature id="explained" eyebrow="Measurements" title="Every mark, explained." flip>
+		<p>Cards explain each height: percentile, growth since last time, accuracy, method and age.</p>
 		{#snippet media()}
 			<PhoneFrame>
 				<Screenshot
 					name="entry-cards"
-					alt="Arlo's measurement: 88.5 cm, plus or minus 1.2 cm, high confidence, today at 12:37; below, cards for Percentile (56th, taller than about 56 in 100 children the same age and sex), Since last (+0.9 cm since 10 Aug), Accuracy (±1.2 cm), Method (LiDAR, 1.9 m away, standing) and When (today, age 2 yrs 2 mos)"
+					alt="Arlo's measurement: 2 feet 10.9 inches, plus or minus 0.5 inches, high confidence, today; below, cards for Percentile (56th, taller than about 56 in 100 children the same age and sex), Since last (+0.4 inches since Aug 11), Accuracy (±0.5 inches), Method (LiDAR, 6.2 feet away, standing) and When (today, age 2 yrs 2 mos)"
 				/>
 			</PhoneFrame>
 		{/snippet}
 	</Feature>
 
-	<Feature id="growth" eyebrow="Growing up" title="Growth charts and percentiles for kids." flip>
-		<p>
-			Babies, children and teens get growth charts from the WHO (to age two) and the CDC (to 20).
-			Their page shows their percentile, how fast they're growing, and milestones along the way.
-		</p>
-		<p>
-			The Grown-up height card estimates how tall they may grow, from their own growth curve, their
-			parents' heights, or both: an estimate, not a promise. You choose who the parents are;
-			Doorframe never guesses.
-		</p>
-		<p>
-			Grown-ups get a steady height instead of a chart: the average of their last measurements, and
-			how consistent they are.
-		</p>
-		<p class="text-base text-label-3">Percentiles are information, not medical advice.</p>
+	<Feature id="growth" eyebrow="Growing up" title="Growth charts and percentiles for kids.">
+		<p>WHO charts to age 2, CDC to 20. Percentile, growth pace and an estimated grown-up height.</p>
+		<p class="text-base text-label-3">Estimates, not promises. Information, not medical advice.</p>
 		{#snippet media()}
 			<PhoneFrame>
 				<Screenshot
 					name="chart"
-					alt="Arlo's page: a Grown-up height card, 170.9 cm to 185.4 cm, an estimate from CDC data and parents' heights, not a promise; a Milestone card, Age 14, Arlo passes Maya in height; then his growth chart, his measurements rising along the shaded percentile bands"
+					alt="Arlo's page: a Grown-up height card, 5 feet 7.3 inches to 6 feet 1.0 inch, an estimate from CDC data and parents' heights, not a promise; a Milestone card, Age 14, Arlo passes Maya in height; then his growth chart, his measurements rising along the shaded percentile bands"
 				/>
 			</PhoneFrame>
 		{/snippet}
